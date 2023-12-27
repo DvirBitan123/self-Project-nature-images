@@ -1,23 +1,7 @@
-import  {publicProcedure, router} from "./trpcServer/trpc";
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import { connectWithSequelize } from "./sequelize/connectWithSequelize";
-import { getAllCategories, craeteNewCategory } from "./DAL/categoriesDAL";
-import { getAllEquipment } from "./DAL/EquipmentDAL";
-import * as SERVICE from './services/imagesService'
 import cors from 'cors';
-import { z } from 'zod';
-
-const appRouter = router({
-  getAllImages: publicProcedure.query(SERVICE.getAllImages), 
-  getImagesbyCategory: publicProcedure
-    .input(z.string()).query(({input}) => SERVICE.getImagesByCategory(input)),
-  getImagebyId: publicProcedure
-    .input(z.string().uuid()).query(({input}) => SERVICE.getImageById(input)),
-  getAllCategories: publicProcedure.query(getAllCategories), 
-  getAllEquipment: publicProcedure.query(getAllEquipment), 
-  // addNewCategory: publicProcedure 
-  //   .input((catName: string) => catName).mutation(() => craeteNewCategory), //to fix
-});
+import { appRouter } from "./router/trpcRouter";
 
 
 type AppRouter = typeof appRouter;
@@ -31,6 +15,6 @@ createHTTPServer({
     return {};
   },
 }).listen(5000);
-console.log('server is up');
+console.log('server is up on port 5000');
 connectWithSequelize();
 
