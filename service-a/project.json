@@ -1,0 +1,67 @@
+{
+  "name": "service-a",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "service-a/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/service-a",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "service-a/src/main.ts",
+        "tsConfig": "service-a/tsconfig.app.json",
+        "assets": ["service-a/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "service-a:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "service-a:build:development"
+        },
+        "production": {
+          "buildTarget": "service-a:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "service-a/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
