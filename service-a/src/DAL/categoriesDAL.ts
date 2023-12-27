@@ -13,6 +13,10 @@ export const getAllCategories = async () => {
   }
 }
 
+
+
+
+
 export const craeteNewCategory = async () => {
   try {
     const catName = 'mr jackal';
