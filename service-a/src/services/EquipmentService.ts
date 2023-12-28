@@ -11,3 +11,17 @@ export const getAllEquipment = async () => {
     throw new Error(`fetch all equipment error: ${error}`);
   }
 }
+
+export const convertEqNameToId = async (equipmentName: string) => {
+  try {
+    const equipmentId = DAL.getEquipmentIdByName(equipmentName);
+    if (equipmentId === undefined || equipmentId === null) {
+      throw new Error("couldn't get the category id");
+    }
+    return equipmentId
+
+  } catch (error) {
+    throw new Error(`convert category namwe to ID error: ${error}`);
+  }
+}
+/// add convert name to id!!
