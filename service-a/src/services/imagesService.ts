@@ -39,7 +39,8 @@ export const getImageById = async (ID: string) => {
       ${allImagesQuery} 
       where i.id = '${ID}'`;
     
-    const imageById = await DAL.getDatawithQuery(imageByIdQuery);    
+    const [imageById] = await DAL.getDatawithQuery(imageByIdQuery);
+        
     if (imageById === undefined || imageById === null) {
       throw new Error('data not found');
     }

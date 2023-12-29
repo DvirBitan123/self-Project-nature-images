@@ -1,13 +1,13 @@
-import {trpc} from '../utils/ConnectTotRPC'
+// import {trpc} from '../utils/ConnectTotRPC'
 
-export default function IndexPage() {
-  const userQuery = trpc.userList.useQuery();
-  // const userCreator = trpc.createUser.useMutation();
+// export default function IndexPage() {
+//   const userQuery = trpc.userList.useQuery();
+//   // const userCreator = trpc.createUser.useMutation();
 
-  return (
-    <div>
-      <p>{userQuery.data}</p>
-      {/* <button onClick={() => userCreator.mutate({ name: 'Frodo' })}> */}
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <p>{userQuery.data}</p>
+//       {/* <button onClick={() => userCreator.mutate({ name: 'Frodo' })}> */}
+//     </div>
+//   );
+// }
