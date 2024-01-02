@@ -63,8 +63,8 @@ const Images = sequelize.define('images', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  imagedate: {
-    type: DataTypes.DATE,
+  date: {
+    type: DataTypes.STRING,
     allowNull: false
   },
   location: {

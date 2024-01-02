@@ -1,12 +1,12 @@
 import GetAllImages from "../components/Home/GetAllImages"
-import Modal from "../components/tools/Modal"
+import SingleImageModal from "../components/ImageModal/SingleImageModal"
 
 function HomePage() {
 
   return (
     <>
       <GetAllImages/>
-      <Modal/>
+      <SingleImageModal/>
     </>
   )
 }

@@ -6,7 +6,7 @@ export interface ImageInterface {
   description: string;
   category: string;
   equipment: string;
-  imageDate: string;
+  date: string;
   location: string;
   lng: number;
   lat: number;

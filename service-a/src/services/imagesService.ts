@@ -12,6 +12,8 @@ export const getAllImages = async () => {
     }
     console.log('yyyeeeahahhhahahahhhhh');
     console.log(allImages[0]);
+    console.log('server date:', allImages[0].date);
+    console.log('server date TYPE:',typeof(allImages[3].date));
     
     return allImages
 

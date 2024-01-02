@@ -19,7 +19,7 @@ export const appRouter = router({
       description: z.string(),
       category: z.string(),
       equipment: z.string(),
-      imageDate: z.string(),
+      date: z.string(),
       location: z.string(),
       lng: z.number(),
       lat: z.number()

@@ -15,7 +15,7 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
     description: newImage.description,
     category: newImage.category,
     equipment: newImage.equipment,
-    imagedate: newImage.imageDate,
+    date: newImage.date,
     location: newImage.location,
     lat: newImage.lat,
     lng: newImage.lng

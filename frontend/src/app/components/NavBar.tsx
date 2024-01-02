@@ -1,7 +1,8 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { atom, useAtom } from 'jotai'
+import { useAtom } from 'jotai';
+import { categoryAtom } from '../Jotai atoms/Jotai_atoms';
 
 
 const navigation = [
@@ -14,7 +15,6 @@ const navigation = [
   { name: 'Landscapes', href: '#', current: false },
 ];
 
-export const categoryAtom = atom('All'); 
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
