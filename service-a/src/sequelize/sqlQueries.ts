@@ -12,7 +12,3 @@ export const allImagesQuery = `
     on i.equipment = e.id
 `;
 
-// export const imageByCatQuery = `
-// ${allImagesQuery} where
-//   c.name = 
-// `

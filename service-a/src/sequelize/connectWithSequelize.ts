@@ -1,13 +1,16 @@
 import { Sequelize } from "sequelize";
 
-// export const sequelize = new Sequelize('zqlycgcv','zqlycgcv', 'ndmJyJXVPnYz-0mCcHv5-Iy3JgfSQjD1', {
-  //   host: 'hansken.db.elephantsql.com',
-  //   dialect: 'postgres',
-  // });
+// connect to pgAdmin:
+export const sequelize = new Sequelize('ImagesDB','postgres', 'bitan212', {
+    host: 'localhost',
+    port: 5432,
+    dialect: 'postgres',
+  });
 
 
+// connect to elephentQL:
   // const sequelize = new Sequelize(process.env.PGURL);
-  export const sequelize = new Sequelize('postgres://zqlycgcv:ndmJyJXVPnYz-0mCcHv5-Iy3JgfSQjD1@hansken.db.elephantsql.com/zqlycgcv');
+  // export const sequelize = new Sequelize('postgres://zqlycgcv:ndmJyJXVPnYz-0mCcHv5-Iy3JgfSQjD1@hansken.db.elephantsql.com/zqlycgcv');
 
 export const connectWithSequelize = async () => {
   try {
