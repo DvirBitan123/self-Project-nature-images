@@ -1,22 +1,20 @@
 import ReturnImgById from "./ReturnImgById";
-import { urlAtom } from "../../Jotai atoms/Jotai_atoms";
+import { imgNameAtom, urlAtom, idAtom } from "../../Jotai atoms/Jotai_atoms";
 import { useAtom } from 'jotai';
-import { idAtom } from "../../Jotai atoms/Jotai_atoms";
 import { IdentificationIcon, CameraIcon, MapPinIcon, CalendarIcon } from '@heroicons/react/24/outline'
-import crested_lark from '../../../image_example/crested_lark.jpg';
 
 
 export default function ModalBody() {
   const [imgID, setImgID] = useAtom(idAtom);
   const [downloadUrl, setDownloadUrl] = useAtom(urlAtom);
-  console.log('larky', crested_lark);
-  
+  const [imgName, setImgName] = useAtom(imgNameAtom);
+
 
   const singleImage = ReturnImgById(imgID);
-  // console.log('url:', singleImage?.url);
 
   if (singleImage !== undefined) {
-    setDownloadUrl(singleImage!.url);    
+    setDownloadUrl(singleImage.url);  
+    setImgName(`${singleImage.alt}.jpg`); 
   }
 
   return (
@@ -54,15 +52,6 @@ export default function ModalBody() {
           <MapPinIcon className="h-5 w-5 mr-3" aria-hidden="true" />
           {singleImage?.location}
         </p>
-
-        <a
-          href={crested_lark}
-          download='image.jpg'
-          target="_blank"
-          rel="noreferrer"
-        >
-
-        </a>
       </div>
     </>
   )

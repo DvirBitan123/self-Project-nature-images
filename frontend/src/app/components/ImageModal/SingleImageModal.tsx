@@ -3,12 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
 import { useAtom } from 'jotai';
 import ModalBody from './ModalBody';
-import { openAtom, urlAtom } from '../../Jotai atoms/Jotai_atoms';
+import { openAtom, urlAtom, imgNameAtom } from '../../Jotai atoms/Jotai_atoms';
 import { DownloadImage } from './DownloadImage';
 
 export default function SingleImageModal() {
   const [openModal, setOpenModal] = useAtom(openAtom);
   const [downloadUrl, setDownloadUrl] = useAtom(urlAtom);
+  const [imgName, setImgName] = useAtom(imgNameAtom);
   const cancelButtonRef = useRef(null);
 
 
@@ -57,7 +58,7 @@ export default function SingleImageModal() {
                       type="button"
                       className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ease-in-out duration-300 hover:bg-green-500 sm:ml-3 sm:w-auto"
                       onClick={() => {
-                        DownloadImage(downloadUrl, 'natureImg.jpg')
+                        DownloadImage(downloadUrl, imgName)
                         setOpenModal(false)
                       }}
                     >

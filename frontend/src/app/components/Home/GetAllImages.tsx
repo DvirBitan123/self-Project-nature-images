@@ -1,4 +1,3 @@
-import { trpc } from '../../utils/ConnectTotRPC';
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai'
 import { categoryAtom } from '../../Jotai atoms/Jotai_atoms';
@@ -11,7 +10,7 @@ export default function GetAllImages() {
   const [imgCategory] = useAtom<string>(categoryAtom);
   const [openModal, setOpenModal] = useAtom(openAtom);
   const [imgID, setImgID] = useAtom(idAtom);
-
+  
   const data = ImagesFetchFilter(imgCategory);
   if (data) {
     const imagesArr = data.map((image) => {
