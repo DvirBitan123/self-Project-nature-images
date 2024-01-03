@@ -57,7 +57,7 @@ export default function NavBar() {
                         // href={item.href}
                         onClick={() => setImgCategory(item.name)}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 ease-in-out duration-200 hover:bg-rose-500 hover:text-white',
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 ease-out duration-200 hover:bg-rose-500 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium cursor-pointer'
                         )}
                         aria-current={item.current ? 'page' : undefined}

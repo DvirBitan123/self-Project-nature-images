@@ -10,10 +10,6 @@ export const getAllImages = async () => {
     if (allImages === undefined || allImages === null) {
       throw new Error('data not found');
     }
-    console.log('yyyeeeahahhhahahahhhhh');
-    console.log(allImages[0]);
-    console.log('server date:', allImages[0].date);
-    console.log('server date TYPE:',typeof(allImages[3].date));
     
     return allImages
 
