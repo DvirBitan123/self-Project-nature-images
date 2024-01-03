@@ -48,7 +48,7 @@ INSERT INTO
         lat
     )
 VALUES (
-        'https://cdn.discordapp.com/attachments/574841205217689613/1190222434654232686/DJI_0078.JPG?ex=65a10405&is=658e8f05&hm=de40285bbd28c6745f0d66c0fc94049d31fd595b6ae0adf7fa1b7b31ea7aede2&',
+        'http://localhost:8181/public/DJI_0078.jpg',
         'Bitronot Ruhama Fields',
         'Bitronot Ruhama Fields in spring', (
             SELECT id
@@ -66,7 +66,7 @@ VALUES (
         25.34,
         -12.36
     ), (
-        'https://cdn.discordapp.com/attachments/574841205217689613/1190222429587505232/DJI_0930.JPG?ex=65a10404&is=658e8f04&hm=2821e07c2ceefd7da91ab90fa946347f13cc7297a2d9839895e6a6738621c459&',
+        'http://localhost:8181/public/DJI_0930.jpg',
         'Brechya fields',
         'Brechya fields look from above', (
             SELECT id
@@ -84,7 +84,7 @@ VALUES (
         27.34,
         -18.36
     ), (
-      'https://cdn.discordapp.com/attachments/574841205217689613/1190222994308612177/IMG_1776.JPG?ex=65a1048b&is=658e8f8b&hm=99804f44acacb5e541287478d06cffe36cb17fa3efef653173cb7830a197b33f&',
+        'http://localhost:8181/public/IMG_1776.jpg',
         'Sinai fan-fingered gecko',
         'Sinai fan-fingered gecko on an house enterace gate', (
             SELECT id
@@ -100,9 +100,9 @@ VALUES (
         '2019/09/13',
         'Brechya vilage, Israel',
         27.34,
-        -18.36,
+        -18.36
     ), (
-      'https://cdn.discordapp.com/attachments/574841205217689613/1190222433102352405/DJI_0057.JPG?ex=65a10405&is=658e8f05&hm=8ffd0c73a063e54a63d39850fdee3599f07256da7aa9c88f675f2ce6a2566370&',
+        'http://localhost:8181/public/DJI_0057.jpg',
         'Three Wheat fields',
         'Three harvested wheat fields at spring', (
             SELECT id
@@ -118,9 +118,9 @@ VALUES (
         '2023/04/11',
         'Brechya vilage, Israel',
         27.34,
-        -18.36,
+        -18.36
     ), (
-      'https://cdn.discordapp.com/attachments/574841205217689613/1190221816246059088/a2d50295ddd7b10f.jpg?ex=65a10372&is=658e8e72&hm=40f64a86fdc5c2330cf41b892fc39ca2d6a3dee88b9881e429052f58cc508c9f&',
+        'http://localhost:8181/public/hoopoe.jpg',
         'Hoopoe',
         'A hoopoe on the grass', (
             SELECT id
@@ -136,9 +136,9 @@ VALUES (
         '16/10/2019',
         'Ashkelon beach, Israel',
         29.34,
-        -15.36,
+        -15.36
     ), (
-      'https://cdn.discordapp.com/attachments/574841205217689613/1190221351341006889/IMG_4866.JPG?ex=65a10303&is=658e8e03&hm=7b0b27b71b38b1094bb75ef70f3f841dcf6cb8672c74cdaefbf444bd48034979&',
+      'http://localhost:8181/public/IMG_4866.jpg',
         'Crested Lark',
         'Crested Lark on a spine at spring', (
             SELECT id
@@ -154,9 +154,9 @@ VALUES (
         '05/04/2022',
         'Brechya vilage, Israel',
         27.34,
-        -18.36,
+        -18.36
     ), (
-      'https://cdn.discordapp.com/attachments/574841205217689613/1190221812106281091/IMG_5264.JPG?ex=65a10371&is=658e8e71&hm=26a4b108dac4fbfb6352692ba86b7ceb83336ead41d582db931f04c0c779818a&',
+        'http://localhost:8181/public/IMG_5264.jpg',
         'Nutria eats',
         'Nutria eats at The Agamon Hula', (
             SELECT id
@@ -172,7 +172,7 @@ VALUES (
         '08/11/2019',
         'The Agamon Hula, Israel',
         88.34,
-        22.36,
+        22.36
     );
 
 

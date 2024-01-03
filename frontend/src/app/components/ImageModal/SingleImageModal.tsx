@@ -3,15 +3,14 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
 import { useAtom } from 'jotai';
 import ModalBody from './ModalBody';
-import crested_lark from '../../../image_example/crested_lark.jpg';
 import { openAtom, urlAtom } from '../../Jotai atoms/Jotai_atoms';
-
+import { DownloadImage } from './DownloadImage';
 
 export default function SingleImageModal() {
   const [openModal, setOpenModal] = useAtom(openAtom);
   const [downloadUrl, setDownloadUrl] = useAtom(urlAtom);
+  const cancelButtonRef = useRef(null);
 
-  const cancelButtonRef = useRef(null)
 
   return (
     <>
@@ -54,22 +53,18 @@ export default function SingleImageModal() {
                     </div>
                   </div>
                   <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                    <a
-                      href={crested_lark}
-                      download='image.jpg'
-                      target="_blank"
-                      rel="noreferrer"
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ease-in-out duration-300 hover:bg-green-500 sm:ml-3 sm:w-auto"
+                      onClick={() => {
+                        DownloadImage(downloadUrl, 'natureImg.jpg')
+                        setOpenModal(false)
+                      }}
                     >
-                      <button
-                        type="button"
-                        className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ease-in-out duration-300 hover:bg-green-500 sm:ml-3 sm:w-auto"
-                        onClick={() => setOpenModal(false)}
-                      >
-                        Download Image
-                        <ArrowDownTrayIcon className="h-5 w-5 ml-2" aria-hidden="true" />
-                      </button>
+                      Download Image
+                      <ArrowDownTrayIcon className="h-5 w-5 ml-2" aria-hidden="true" />
+                    </button>
 
-                    </a>
                     <button
                       type="button"
                       className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 ease-in-out duration-300 hover:bg-gray-100 sm:mt-0 sm:w-auto"

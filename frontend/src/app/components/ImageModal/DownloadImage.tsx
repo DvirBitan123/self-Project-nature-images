@@ -1,7 +1,6 @@
-import React from "react"
+import {saveAs} from 'file-saver';
 
 
-const DownloadImage = (url: string) => {
-  
+export const DownloadImage = (url: string, name: string) => {
+  saveAs(url, name)
 }
-

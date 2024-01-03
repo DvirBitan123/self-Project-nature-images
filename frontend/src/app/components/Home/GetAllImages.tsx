@@ -29,7 +29,7 @@ export default function GetAllImages() {
 
     return (
       <>
-        <div className='grid place-content-center '>
+        <div className='grid justify-items-center '>
           <div className='flex justify-start flex-wrap'>
             {imagesArr}
           </div>
