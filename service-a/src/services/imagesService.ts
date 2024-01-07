@@ -7,6 +7,7 @@ import { ImageInterface } from '../types/types';
 export const getAllImages = async () => {  
   try {
     const allImages = await DAL.getDatawithQuery(allImagesQuery);
+    // const allImages = await DAL.getAllImages();
     if (allImages === undefined || allImages === null) {
       throw new Error('data not found');
     }

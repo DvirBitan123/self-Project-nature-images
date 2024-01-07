@@ -1,5 +1,5 @@
 import { sequelize } from "./connectWithSequelize";
-import { DataTypes, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 import { v4 as uuidv4 } from 'uuid';
 
 const Categories = sequelize.define('categories', {
@@ -63,7 +63,7 @@ const Images = sequelize.define('images', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  date: {
+  imagedate: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -84,10 +84,25 @@ const Images = sequelize.define('images', {
   updatedAt: false
 })
 
-// Categories.hasMany(Images);
-// Images.hasOne(Categories);
-// Equipment.hasMany(Images);
-// Images.hasOne(Equipment);
+
+/// check if it's needed
+Categories.hasMany(Images, { 
+  foreignKey: 'category',
+  as: 'Category' 
+});
+Images.belongsTo(Categories, { 
+  foreignKey: 'category',
+  as: 'Category' 
+});
+
+Equipment.hasMany(Images, { 
+  foreignKey: 'equipment',
+  as: 'Equipment' 
+});
+Images.belongsTo(Equipment, { 
+  foreignKey: 'equipment',
+  as: 'Equipment' 
+});
 
 export { Categories, Equipment, Images};
 

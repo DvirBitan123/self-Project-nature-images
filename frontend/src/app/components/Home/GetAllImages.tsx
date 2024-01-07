@@ -4,13 +4,12 @@ import { categoryAtom } from '../../Jotai atoms/Jotai_atoms';
 import { openAtom, idAtom } from '../../Jotai atoms/Jotai_atoms';
 import ImagesFetchFilter from './ImagesFetchFilter';
 
-
 export default function GetAllImages() {
   const navigate = useNavigate();
-  const [imgCategory] = useAtom<string>(categoryAtom);
+  const [imgCategory] = useAtom(categoryAtom);
   const [openModal, setOpenModal] = useAtom(openAtom);
   const [imgID, setImgID] = useAtom(idAtom);
-  
+
   const data = ImagesFetchFilter(imgCategory);
   if (data) {
     const imagesArr = data.map((image) => {

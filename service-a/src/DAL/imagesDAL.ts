@@ -1,16 +1,38 @@
-import {sequelize} from '../sequelize/connectWithSequelize';
-import {Images} from '../sequelize/sequelizeModels';
+import { sequelize } from '../sequelize/connectWithSequelize';
+import { Images, Categories, Equipment } from '../sequelize/sequelizeModels';
 import { ImageInterface } from '../types/types';
 
 export const getDatawithQuery = async (query: string) => {
-    const [data]= await sequelize.query(query);
-    const newData = data as ImageInterface[];
-    return newData
+  const [data] = await sequelize.query(query);
+  const newData = data as ImageInterface[];
+  return newData
 }
+
+export const getAllImages = async () => {
+  const allImages = await Images.findAll({
+    include: [
+      {
+        model: Categories,
+        attributes: ['name'],
+        as: 'Category',
+      },
+      {
+        model: Equipment,
+        attributes: ['name'],
+        as: 'Equipment',
+      },
+    ],
+    attributes: { exclude: ['category', 'equipment'] },
+    raw: true, 
+  });
+
+  console.log('all images:', allImages);
+  return allImages;
+};
 
 export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
   const NewImgRes = await Images.create({
-    url: newImage.url, 
+    url: newImage.url,
     alt: newImage.alt,
     description: newImage.description,
     category: newImage.category,
@@ -30,6 +52,6 @@ export const deleteImageById = async (imgID: string) => {
       id: imgID
     }
   });
-  
+
   return res
 }
