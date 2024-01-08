@@ -1,12 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Outlet } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import React, { useState } from 'react';
 import { trpc } from './utils/ConnectTotRPC';
 import NavBar from './components/NavBar';
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-
+import Router from './router/Router';
 
 export function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -15,11 +13,6 @@ export function App() {
       links: [
         httpBatchLink({
           url: 'http://localhost:5000',
-          // async headers() {
-          //   return {
-          //     authorization: getAuthCookie(),
-          //   };
-          // },
         }),
       ],
     }),
@@ -36,7 +29,7 @@ export function App() {
       <ApolloProvider client={client}>
         <QueryClientProvider client={queryClient}>
           <NavBar />
-          <Outlet />
+          <Router />
         </QueryClientProvider>
       </ApolloProvider>
     </trpc.Provider>
