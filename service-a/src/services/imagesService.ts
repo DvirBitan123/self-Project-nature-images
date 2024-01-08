@@ -4,34 +4,33 @@ import { convertEqNameToId } from './EquipmentService';
 import { allImagesQuery } from '../sequelize/sqlQueries';
 import { ImageInterface } from '../types/types';
 
-export const getAllImages = async () => {  
+export const getAllImages = async () => {
   try {
     const allImages = await DAL.getDatawithQuery(allImagesQuery);
-    // const allImages = await DAL.getAllImages();
     if (allImages === undefined || allImages === null) {
       throw new Error('data not found');
     }
-    
     return allImages
 
-  } catch(error) {
+  } catch (error) {
     throw new Error(`error in getting all images: ${error}`);
   }
 }
 
-export const getImagesByCategory = async (category: string) => { 
-  
-  
+export const getImagesByCategory = async (category: string) => {
   try {
-    const categoryImagesQuery = `
-      ${allImagesQuery} 
-      where c.name = '${category}'`;
+    let categoryImagesQuery = allImagesQuery;
+
+    if (category !== 'All') 
+      categoryImagesQuery += `where c.name = '${category}'`;
+    
+
     const categoryImages = await DAL.getDatawithQuery(categoryImagesQuery);
     if (categoryImages === undefined || categoryImages === null) {
       throw new Error('data not found');
     }
     return categoryImages
-    
+
   } catch (error) {
     throw new Error(`error in getting images by category: ${error}`);
   }
@@ -42,9 +41,9 @@ export const getImageById = async (ID: string) => {
     const imageByIdQuery = `
       ${allImagesQuery} 
       where i.id = '${ID}'`;
-    
+
     const [imageById] = await DAL.getDatawithQuery(imageByIdQuery);
-        
+
     if (imageById === undefined || imageById === null) {
       throw new Error('data not found');
     }
@@ -56,8 +55,6 @@ export const getImageById = async (ID: string) => {
 }
 
 export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
-  console.log('new image:', newImage);
-  
   try {
     const allImages = await DAL.getDatawithQuery(allImagesQuery);
     for (let img of allImages) {
@@ -69,7 +66,7 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
     const equipmentId = await convertEqNameToId(newImage.equipment);
 
     newImage.category = categoryId;
-    newImage.equipment = equipmentId;   
+    newImage.equipment = equipmentId;
     const newImgRes = DAL.addNewImage(newImage);
 
     if (newImgRes === undefined || newImgRes === null) {
@@ -82,7 +79,7 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
   }
 }
 
-export const deleteImageById = async(imgId: string) => {
+export const deleteImageById = async (imgId: string) => {
   try {
     const delRes = await DAL.deleteImageById(imgId);
     return delRes

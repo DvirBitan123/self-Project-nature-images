@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai'
 import { categoryAtom } from '../../Jotai atoms/Jotai_atoms';
 import { openAtom, idAtom, emailAtom } from '../../Jotai atoms/Jotai_atoms';
-import ImagesFetchFilter from './ImagesFetchFilter';
+import returnImagesByCategory from './ReturnImagesBycategory';
 
 export default function GetAllImages() {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function GetAllImages() {
   const [imgID, setImgID] = useAtom(idAtom);
   const [userEmail, setUserEmail] = useAtom(emailAtom);  
 
-  const data = ImagesFetchFilter(imgCategory);
+  const data = returnImagesByCategory(imgCategory)
   if (data) {
     const imagesArr = data.map((image) => {
       return (
