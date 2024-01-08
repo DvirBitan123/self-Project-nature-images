@@ -1,7 +1,7 @@
-import SigInFields from "./signInFields";
+import SigUpFields from "./signUpFields";
 
 
-export default function SignIn() {
+export default function SignUp() {
 
   return (
     <>
@@ -13,17 +13,17 @@ export default function SignIn() {
             alt="Nature Lens Icon"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Create New Account
           </h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <SigInFields />
+          <SigUpFields />
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Don't have an account yet?{' '}
-            <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Sign Up!
+            Already have an account?{' '}
+            <a href="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              Sign In!
             </a>
           </p>
         </div>
