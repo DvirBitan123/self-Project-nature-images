@@ -3,6 +3,7 @@ import * as ImagesService from '../services/imagesService';
 import * as CategoriesService from '../services/categoriesService';
 import * as EquipmentService from '../services/EquipmentService';
 import { z } from 'zod';
+import addImageZodSchema from "../ZodValidations/AddImageValidation";
 
 
 export const appRouter = router({
@@ -12,24 +13,14 @@ export const appRouter = router({
   getImageById: publicProcedure
   .input(z.string().uuid()).query(({input}) => ImagesService.getImageById(input)),
   addNewImage: publicProcedure
-  .input(z.object({
-    url: z.string(),
-      alt: z.string(),
-      description: z.string(),
-      category: z.string(),
-      equipment: z.string(),
-      date: z.string(),
-      location: z.string(),
-      lng: z.number(),
-      lat: z.number()
-    }))
+  .input(addImageZodSchema)
     .query(({input}) => ImagesService.addNewImage(input)),
     deleteImageById: publicProcedure
-    .input(z.string().uuid()).mutation(({input}) => ImagesService.deleteImageById(input)),
+    .input(z.string().uuid()).query(({input}) => ImagesService.deleteImageById(input)),
     
     getAllCategories: publicProcedure.query(CategoriesService.getAllCategories), 
     addNewCategory: publicProcedure 
-    .input(z.string()).mutation(({input}) => CategoriesService.addNewCategory(input)),
+    .input(z.string()).query(({input}) => CategoriesService.addNewCategory(input)),
     
     getAllEquipment: publicProcedure.query(EquipmentService.getAllEquipment), 
     

@@ -20,7 +20,7 @@ CREATE TABLE
         description VARCHAR(300) NOT NULL,
         category UUID NOT NULL,
         equipment UUID NOT NULL,
-        imageDate VARCHAR(100) NOT NULL,
+        date VARCHAR(100) NOT NULL,
         location VARCHAR(100) NOT NULL,
         lng INT NOT NULL,
         lat INT NOT NULL,
@@ -42,7 +42,7 @@ INSERT INTO
         description,
         category,
         equipment,
-        imageDate,
+        date,
         location,
         lng,
         lat
@@ -174,14 +174,3 @@ VALUES (
         88.34,
         22.36
     );
-
-
-
-'three fields': 'https://cdn.discordapp.com/attachments/574841205217689613/1190222433102352405/DJI_0057.JPG?ex=65a10405&is=658e8f05&hm=8ffd0c73a063e54a63d39850fdee3599f07256da7aa9c88f675f2ce6a2566370&';
-'whoop whoop': 'https://cdn.discordapp.com/attachments/574841205217689613/1190221816246059088/a2d50295ddd7b10f.jpg?ex=65a10372&is=658e8e72&hm=40f64a86fdc5c2330cf41b892fc39ca2d6a3dee88b9881e429052f58cc508c9f&';
-'crested lark': 'https://cdn.discordapp.com/attachments/574841205217689613/1190221351341006889/IMG_4866.JPG?ex=65a10303&is=658e8e03&hm=7b0b27b71b38b1094bb75ef70f3f841dcf6cb8672c74cdaefbf444bd48034979&';
-'nutria': 'https://cdn.discordapp.com/attachments/574841205217689613/1190221812106281091/IMG_5264.JPG?ex=65a10371&is=658e8e71&hm=26a4b108dac4fbfb6352692ba86b7ceb83336ead41d582db931f04c0c779818a&';
-'lemur': 'https://cdn.discordapp.com/attachments/574841205217689613/1190221815172321401/IMG_9287.JPG?ex=65a10371&is=658e8e71&hm=422ebe73edb543261bf1cb676e7c574a733e912d05caa149c41dcf1b88ae33f0&';
-'butterfly': 'https://cdn.discordapp.com/attachments/574841205217689613/1190222424051044433/IMG_3978.JPG?ex=65a10403&is=658e8f03&hm=2d9d3e9099088dff2ba16bebf7507b4966910e20145c8e74b195c963430c97cf&';
-'dragonfly protrait': 'https://cdn.discordapp.com/attachments/574841205217689613/1190221813674946590/IMG_2946.JPG?ex=65a10371&is=658e8e71&hm=2bd1b873992cad30d5bcca502430f057b4457d0ddedf69343113242896e36f11&';
-

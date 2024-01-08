@@ -20,6 +20,8 @@ export const getAllImages = async () => {
 }
 
 export const getImagesByCategory = async (category: string) => { 
+  
+  
   try {
     const categoryImagesQuery = `
       ${allImagesQuery} 
@@ -54,6 +56,8 @@ export const getImageById = async (ID: string) => {
 }
 
 export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
+  console.log('new image:', newImage);
+  
   try {
     const allImages = await DAL.getDatawithQuery(allImagesQuery);
     for (let img of allImages) {

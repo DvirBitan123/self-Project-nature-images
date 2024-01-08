@@ -63,7 +63,7 @@ const Images = sequelize.define('images', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  imagedate: {
+  date: {
     type: DataTypes.STRING,
     allowNull: false
   },

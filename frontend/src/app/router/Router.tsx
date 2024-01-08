@@ -3,7 +3,8 @@ import ROUTES from './routes';
 import App from '../app';
 import HomePage from '../pages/HomePage';
 import SignUp from '../components/users/Register/signUp';
-// import Register from '../components/users/Register/Register';
+import Login from '../components/users/Login/Login';
+
 
 const Router = () => {
   return (
@@ -11,7 +12,7 @@ const Router = () => {
       <Route path={'/'} element={<App />}>
         <Route index={true} path={ROUTES.HOME} element={<HomePage />} />
         <Route path={ROUTES.REGISTER} element={<SignUp />} />
-        {/* <Route path={ROUTES.REGISTER} element={<Register />} /> */}
+        <Route path={ROUTES.LOGIN} element={<Login />} />
       </Route>
       {/* <Route path={ROUTES.DEFAULT} element={<NotFoundPage />} />  */}
     </Routes>
