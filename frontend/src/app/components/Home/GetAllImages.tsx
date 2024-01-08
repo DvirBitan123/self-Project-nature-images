@@ -3,13 +3,14 @@ import { useAtom } from 'jotai'
 import { categoryAtom } from '../../Jotai atoms/Jotai_atoms';
 import { openAtom, idAtom, emailAtom } from '../../Jotai atoms/Jotai_atoms';
 import returnImagesByCategory from './ReturnImagesBycategory';
+import CategoriesFilterButtons from './CategoriesFilterButtons';
 
 export default function GetAllImages() {
   const navigate = useNavigate();
   const [imgCategory] = useAtom(categoryAtom);
   const [openModal, setOpenModal] = useAtom(openAtom);
   const [imgID, setImgID] = useAtom(idAtom);
-  const [userEmail, setUserEmail] = useAtom(emailAtom);  
+  const [userEmail, setUserEmail] = useAtom(emailAtom);
 
   const data = returnImagesByCategory(imgCategory)
   if (data) {
@@ -29,6 +30,9 @@ export default function GetAllImages() {
     return (
       <>
         <div className='grid justify-items-center '>
+          <br></br>
+          <CategoriesFilterButtons/>
+          <br></br>
           <div className='flex justify-start flex-wrap'>
             {imagesArr}
           </div>
