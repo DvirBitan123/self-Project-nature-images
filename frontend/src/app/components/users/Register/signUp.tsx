@@ -13,7 +13,7 @@ export default function SignUp() {
             alt="Nature Lens Icon"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Create New Account
+            Create a New Account
           </h2>
         </div>
 

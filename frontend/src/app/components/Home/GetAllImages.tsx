@@ -29,7 +29,7 @@ export default function GetAllImages() {
 
     return (
       <>
-        <div className='grid justify-items-center '>
+        <div className='grid justify-items-center'>
           <br></br>
           <CategoriesFilterButtons/>
           <br></br>
