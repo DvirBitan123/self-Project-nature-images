@@ -1,17 +1,16 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon, UserCircleIcon, UserIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, BellIcon, XMarkIcon, UserCircleIcon, } from '@heroicons/react/24/outline'
 import { useAtom } from 'jotai';
 import { categoryAtom } from '../Jotai atoms/Jotai_atoms';
 
 
 const navigation = [
-  { name: 'Images', href: '#', current: false },
-  { name: 'map', href: '#', current: false },
+  { name: 'Images', href: '/', current: false },
+  { name: 'map', href: '/map', current: false },
   { name: 'self zone', href: '#', current: false },
 
 ];
-
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -48,17 +47,22 @@ export default function NavBar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <div
-                        key={item.name}
-                        // href={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-200 ease-out duration-200 hover:bg-rose-500 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium cursor-pointer'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
+                      <a
+                        key={item.href}
+                        href={item.href}
                       >
-                        {item.name}
-                      </div>
+                        <div
+                          key={item.name}
+                          // href={item.href}
+                          className={classNames(
+                            'text-gray-200 ease-out duration-200 hover:bg-rose-500 hover:text-white',
+                            'rounded-md px-3 py-2 text-sm font-medium cursor-pointer'
+                          )}
+                          aria-current={item.current ? 'page' : undefined}
+                        >
+                          {item.name}
+                        </div>
+                      </a>
                     ))}
                   </div>
                 </div>

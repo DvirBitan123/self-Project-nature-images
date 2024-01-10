@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai'
-import { categoryAtom } from '../../Jotai atoms/Jotai_atoms';
-import { openAtom, idAtom, emailAtom } from '../../Jotai atoms/Jotai_atoms';
+import { categoryAtom, openAtom, idAtom, emailAtom } from '../../Jotai atoms/Jotai_atoms';
 import returnImagesByCategory from './ReturnImagesBycategory';
 import CategoriesFilterButtons from './CategoriesFilterButtons';
 

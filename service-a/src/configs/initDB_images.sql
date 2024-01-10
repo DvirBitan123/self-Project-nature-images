@@ -63,12 +63,12 @@ VALUES (
         ),
         '2023/04/26',
         'Ruhama vilage, Israel',
-        25.34,
-        -12.36
+        34.723,
+        31.492
     ), (
         'http://localhost:8181/public/DJI_0930.jpg',
         'Brechya fields',
-        'Brechya fields look from above', (
+        'Brechya fields view from above', (
             SELECT id
             FROM categories
             WHERE
@@ -81,8 +81,8 @@ VALUES (
         ),
         '2022/02/20',
         'Brechya vilage, Israel',
-        27.34,
-        -18.36
+        34.618,
+        31.673
     ), (
         'http://localhost:8181/public/IMG_1776.jpg',
         'Sinai fan-fingered gecko',
@@ -99,8 +99,8 @@ VALUES (
         ),
         '2019/09/13',
         'Brechya vilage, Israel',
-        27.34,
-        -18.36
+        34.621,
+        31.668
     ), (
         'http://localhost:8181/public/DJI_0057.jpg',
         'Three Wheat fields',
@@ -117,12 +117,12 @@ VALUES (
         ),
         '2023/04/11',
         'Brechya vilage, Israel',
-        27.34,
-        -18.36
+        34.620,
+        31.673
     ), (
         'http://localhost:8181/public/hoopoe.jpg',
         'Hoopoe',
-        'A hoopoe on the grass', (
+        'A hoopoe swallows an insect', (
             SELECT id
             FROM categories
             WHERE
@@ -135,12 +135,12 @@ VALUES (
         ),
         '16/10/2019',
         'Ashkelon beach, Israel',
-        29.34,
-        -15.36
+        34.562,
+        31.687
     ), (
       'http://localhost:8181/public/IMG_4866.jpg',
         'Crested Lark',
-        'Crested Lark on a spine at spring', (
+        'Crested Lark on a spotted golden thistle', (
             SELECT id
             FROM categories
             WHERE
@@ -153,8 +153,8 @@ VALUES (
         ),
         '05/04/2022',
         'Brechya vilage, Israel',
-        27.34,
-        -18.36
+        34.622,
+        31.670
     ), (
         'http://localhost:8181/public/IMG_5264.jpg',
         'Nutria eats',
@@ -171,6 +171,44 @@ VALUES (
         ),
         '08/11/2019',
         'The Agamon Hula, Israel',
-        88.34,
-        22.36
+        35.619,
+        33.099
+    ), 
+    (
+        'http://localhost:8181/public/IMG_5154.jpg',
+        '',
+        'mountain gazelle in the Gazelle Valley', (
+            SELECT id
+            FROM categories
+            WHERE
+                name = 'Animals'
+        ), (
+            SELECT id
+            FROM equipment
+            WHERE
+                name = 'Canon EOS 70D'
+        ),
+        '27/07/2021',
+        'Gazelle Valley, Jerusalem, Israel',
+        35.195,
+        31.760
+    ),
+    (
+        'http://localhost:8181/public/IMG_9287.jpg',
+        '',
+        'Ring-tailed lemur yawning in The Biblical zoo', (
+            SELECT id
+            FROM categories
+            WHERE
+                name = 'Animals'
+        ), (
+            SELECT id
+            FROM equipment
+            WHERE
+                name = 'Canon EOS 80D'
+        ),
+        '18/09/2022',
+        'The Biblical zoo, Jerusalem, Israel',
+        35.176,
+        31.746
     );
