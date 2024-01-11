@@ -22,8 +22,8 @@ CREATE TABLE
         equipment UUID NOT NULL,
         date VARCHAR(100) NOT NULL,
         location VARCHAR(100) NOT NULL,
-        lng INT NOT NULL,
-        lat INT NOT NULL,
+        lng FLOAT NOT NULL,
+        lat FLOAT NOT NULL,
         FOREIGN KEY (category) REFERENCES categories(id),
         FOREIGN KEY (equipment) REFERENCES equipment(id),
         UNIQUE(url)
@@ -176,7 +176,7 @@ VALUES (
     ), 
     (
         'http://localhost:8181/public/IMG_5154.jpg',
-        '',
+        'mountain gazelle',
         'mountain gazelle in the Gazelle Valley', (
             SELECT id
             FROM categories
@@ -195,7 +195,7 @@ VALUES (
     ),
     (
         'http://localhost:8181/public/IMG_9287.jpg',
-        '',
+        'Ring-tailed lemur',
         'Ring-tailed lemur yawning in The Biblical zoo', (
             SELECT id
             FROM categories

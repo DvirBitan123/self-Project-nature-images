@@ -44,7 +44,7 @@ export function MapTest() {
   if (featuresArr)
     return (
       <div className='grid justify-items-center py-6'>
-        <RMap width={'700px'} height={'450px'} className=' rounded-xl' initial={{ center: fromLonLat([34.965, 31.738]), zoom: 9 }}>
+        <RMap height={'450px'} className='w-8/12 shadow-2xl' initial={{ center: fromLonLat([34.965, 31.738]), zoom: 9 }}>
           <ROSM />
           <RLayerVector zIndex={10}>
             <RStyle.RStyle>
@@ -74,9 +74,6 @@ export function MapTest() {
             ))}
           </RLayerVector>
         </RMap>
-        {/* <button onClick={() => setMashu(mashu + 1)}>
-          Rerender yyeeaahh: {mashu}
-        </button> */}
       </div>
     )
 }

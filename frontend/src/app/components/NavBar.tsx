@@ -1,9 +1,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon, UserCircleIcon, } from '@heroicons/react/24/outline'
-import { useAtom } from 'jotai';
-import { categoryAtom } from '../Jotai atoms/Jotai_atoms';
-
+import { Bars3Icon, BellIcon, XMarkIcon, UserCircleIcon, } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'Images', href: '/', current: false },
@@ -68,6 +65,17 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <a
+                href='/Login'
+                className='mr-4'
+                >
+                  Login
+                </a>
+                <a
+                href='/Register'
+                >
+                  Sign Up
+                </a>
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
