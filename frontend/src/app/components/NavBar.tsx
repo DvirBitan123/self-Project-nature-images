@@ -64,24 +64,27 @@ export default function NavBar() {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <a
-                href='/Login'
-                className='mr-4'
-                >
-                  Login
-                </a>
-                <a
-                href='/Register'
-                >
-                  Sign Up
-                </a>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-medium text-sm">
+                {/* <div className='ease-out duration-200 rounded-md px-3 py-2 text-gray-300 hover:bg-rose-500 hover:text-white'> */}
+                  <a
+                    href='/Login'
+                    className='mr-4 rounded-md px-3 py-2 text-gray-300 ease-out duration-200 hover:bg-fuchsia-500 hover:text-white'
+                  >
+                    Login
+                  </a>
+                  <a
+                    className='text-gray-300 rounded-md px-3 py-2 ease-out duration-200 hover:bg-purple-500 hover:text-white'
+                    href='/Register'
+                  >
+                    Sign Up
+                  </a>
+                {/* </div> */}
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                        <UserCircleIcon className="h-9 w-9" aria-hidden="true"/>
+                      <UserCircleIcon className="h-9 w-9" aria-hidden="true" />
                     </Menu.Button>
                   </div>
                   <Transition

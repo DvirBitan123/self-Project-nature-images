@@ -19,7 +19,9 @@ app.use(cors(Options))
 app.use(postgraphile(`postgres://postgres:bitan212@localhost:5432/usersDB`, 'public', {
   watchPg: true,
   graphiql: true,
-  enhanceGraphiql: true
+  enhanceGraphiql: true,
+  jwtPgTypeIdentifier:"public.jwt_token",
+  jwtSecret: "kso;dvjs;ovjsvlkhnsdv" 
 }));
 
 

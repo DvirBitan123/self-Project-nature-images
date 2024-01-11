@@ -1,6 +1,7 @@
 import LoginFields from "./LoginField";
 
 export default function Login() {
+  // localStorage.getItem
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function Login() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Don't have an account yet?{' '}
-            <a href="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Sign Up!
             </a>
           </p>

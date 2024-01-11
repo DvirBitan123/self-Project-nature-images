@@ -10,5 +10,5 @@ export const urlAtom = atom<string>('');
 
 export const imgNameAtom = atom<string>('');
 
-export const emailAtom = atom<string>('');
+export const loginMessageAtom = atom<string>('');
 

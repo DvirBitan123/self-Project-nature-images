@@ -1,13 +1,13 @@
 import { useForm, FieldValues } from 'react-hook-form';
 import { useMutation } from "@apollo/client";
-import { createUserMutaion } from "../../../UsersGraphQL/usersMutations";
 import { useNavigate } from 'react-router-dom';
-import { emailAtom } from '../../../Jotai atoms/Jotai_atoms';
-import { useAtom } from 'jotai';
 import { emailValidate, passwordValidate } from '../../../utils/validations';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../passowrdInput';
 import classNames from '../../../utils/ClassNames';
+import { authMutation } from '../../../UsersGraphQL/authMutation';
+import { JwtAuthUser } from '../JWTAuthFunc';
+import { useState } from 'react';
 
 export default function LoginField() {
   const {
@@ -15,13 +15,22 @@ export default function LoginField() {
     watch,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
+  const navigate = useNavigate();
+  const [authUser, { error: mutationError }] = useMutation(authMutation);
+  const [errorMessage, setErrorMessage] = useState();
 
   const inputEmail = watch('email');
   const inputPassword = watch('password');
 
+  const authLogin = async (event: FieldValues ) => {
+    event.preventDefault();
+    const message = await JwtAuthUser(authUser, navigate, inputEmail, inputPassword);
+    // setErrorMessage(message)
+  }
+  
 
   return (
-    <form className="space-y-6">
+    <form className="space-y-6" onSubmit={authLogin}>
       <div>
         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
           Email address

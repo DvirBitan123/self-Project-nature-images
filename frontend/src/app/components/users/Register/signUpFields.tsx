@@ -2,7 +2,7 @@ import { useForm, FieldValues } from 'react-hook-form';
 import { useMutation } from "@apollo/client";
 import { createUserMutaion } from "../../../UsersGraphQL/usersMutations";
 import { useNavigate } from 'react-router-dom';
-import { emailAtom } from '../../../Jotai atoms/Jotai_atoms';
+import { loginMessageAtom } from '../../../Jotai atoms/Jotai_atoms';
 import { useAtom } from 'jotai';
 import { emailValidate, passwordValidate } from '../../../utils/validations';
 import EmailInput from '../EmailInput';
@@ -12,7 +12,7 @@ import classNames from '../../../utils/ClassNames';
 export default function SigUpFields() {
   const [craeteNewUser, { error: mutationError }] = useMutation(createUserMutaion);
   const navigate = useNavigate();
-  const [userEmail, setUserEmail] = useAtom(emailAtom);
+  const [userEmail, setUserEmail] = useAtom(loginMessageAtom);
   const {
     register,
     watch,

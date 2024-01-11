@@ -1,17 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai'
-import { categoryAtom, openAtom, idAtom, emailAtom } from '../../Jotai atoms/Jotai_atoms';
+import { categoryAtom, openAtom, idAtom, loginMessageAtom } from '../../Jotai atoms/Jotai_atoms';
 import returnImagesByCategory from './ReturnImagesBycategory';
 import CategoriesFilterButtons from './CategoriesFilterButtons';
 
 export default function GetAllImages() {
-  const navigate = useNavigate();
   const [imgCategory] = useAtom(categoryAtom);
   const [openModal, setOpenModal] = useAtom(openAtom);
   const [imgID, setImgID] = useAtom(idAtom);
-  const [userEmail, setUserEmail] = useAtom(emailAtom);
-
-  const data = returnImagesByCategory(imgCategory)
+  // const myToken = localStorage.getItem('images_token');
+  
+  const data = returnImagesByCategory(imgCategory);
   if (data) {
     const imagesArr = data.map((image) => {
       return (
