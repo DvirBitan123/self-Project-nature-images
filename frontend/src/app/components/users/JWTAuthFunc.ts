@@ -1,7 +1,7 @@
 import { NavigateFunction } from "react-router-dom";
 import { AuthFuncType } from "../../types/helpertypes";
 import { loginMessageAtom } from "../../Jotai atoms/Jotai_atoms";
-import { useAtom } from "jotai";
+import { SetStateAction, useAtom } from "jotai";
 
 export async function JwtAuthUser(
   authUser: AuthFuncType,
@@ -9,7 +9,9 @@ export async function JwtAuthUser(
   userEmail: string,
   userPassword: string) {
 
+    // check if error message is good practice
   try {
+    let myError = '';
     await authUser({
       variables: { email: userEmail, password: userPassword },
       onCompleted: (data) => {
@@ -20,11 +22,12 @@ export async function JwtAuthUser(
           navigate('/');
         }
         else {
-          console.log('no token!!!! SSSHHHAAAMMEEEE!!!');
+          myError = '⚠ Email or Password incorrect';
         }
       },
     });
-
+    return myError
+    
   } catch (error) {
     throw new Error(`error during authentication: ${error}`);
   }

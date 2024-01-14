@@ -17,7 +17,7 @@ export default function LoginField() {
   } = useForm({ mode: "onChange" });
   const navigate = useNavigate();
   const [authUser, { error: mutationError }] = useMutation(authMutation);
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const inputEmail = watch('email');
   const inputPassword = watch('password');
@@ -25,7 +25,7 @@ export default function LoginField() {
   const authLogin = async (event: FieldValues ) => {
     event.preventDefault();
     const message = await JwtAuthUser(authUser, navigate, inputEmail, inputPassword);
-    // setErrorMessage(message)
+    setErrorMessage(message)
   }
   
 
@@ -53,6 +53,9 @@ export default function LoginField() {
           errors={errors}
           passwordValidate={passwordValidate}
         />
+      </div>
+      <div>
+        <p>{errorMessage}</p>
       </div>
 
       <div>
