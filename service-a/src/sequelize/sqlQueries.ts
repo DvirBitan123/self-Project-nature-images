@@ -12,3 +12,5 @@ export const allImagesQuery = `
     on i.equipment = e.id
 `;
 
+
+

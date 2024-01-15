@@ -1,11 +1,11 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon, UserCircleIcon, } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, UserCircleIcon, } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'Images', href: '/', current: false },
   { name: 'map', href: '/map', current: false },
-  { name: 'self zone', href: '#', current: false },
+  { name: 'self zone', href: '/user', current: false },
 
 ];
 

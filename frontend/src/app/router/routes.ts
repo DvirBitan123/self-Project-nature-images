@@ -4,6 +4,7 @@ const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   MAP: '/Map',
+  USER: '/user',
   DEFAULT: '*'
 };
 

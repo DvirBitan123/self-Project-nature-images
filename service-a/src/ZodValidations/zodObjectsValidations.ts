@@ -12,4 +12,9 @@ const addImageZodSchema = z.object({
     lat: z.number()
   });
 
-export default addImageZodSchema
+const EditUserCategory = z.object({
+  token: z.string(),
+  categoryId: z.string().uuid()
+})
+
+export {addImageZodSchema, EditUserCategory}

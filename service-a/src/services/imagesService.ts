@@ -13,7 +13,7 @@ export const getAllImages = async () => {
     return allImages
 
   } catch (error) {
-    throw new Error(`error in getting all images: ${error}`);
+    console.error(error);
   }
 }
 
@@ -32,7 +32,7 @@ export const getImagesByCategory = async (category: string) => {
     return categoryImages
 
   } catch (error) {
-    throw new Error(`error in getting images by category: ${error}`);
+    console.error(error);
   }
 }
 
@@ -50,7 +50,7 @@ export const getImageById = async (ID: string) => {
     return imageById
 
   } catch (error) {
-    throw new Error(`error in get by id: ${error}`);
+    console.error(error);
   }
 }
 

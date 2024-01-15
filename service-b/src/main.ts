@@ -21,7 +21,7 @@ app.use(postgraphile(`postgres://postgres:bitan212@localhost:5432/usersDB`, 'pub
   graphiql: true,
   enhanceGraphiql: true,
   jwtPgTypeIdentifier:"public.jwt_token",
-  jwtSecret: "kso;dvjs;ovjsvlkhnsdv" 
+  jwtSecret: process.env.JWT_SECRET 
 }));
 
 

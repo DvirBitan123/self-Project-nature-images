@@ -1,7 +1,6 @@
 import LoginFields from "./LoginField";
 
 export default function Login() {
-  // localStorage.getItem
 
   return (
     <>

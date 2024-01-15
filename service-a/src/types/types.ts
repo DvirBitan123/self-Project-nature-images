@@ -16,3 +16,8 @@ export interface CategoryInterface {
   id: string;
   name: string;
 }
+
+export interface UserCategoryInput {
+  token: string,
+  categoryId: string
+};

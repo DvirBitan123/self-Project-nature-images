@@ -5,12 +5,29 @@ CREATE TABLE
         UNIQUE(name)
     );
 
+INSERT INTO categories (name)
+VALUES ('Animals'), ('Birds'), ('Reptails'), ('Insects'), ('plants'), ('Landscapes');
+
 CREATE TABLE
     IF NOT EXISTS equipment (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         name VARCHAR(255) NOT NULL,
         UNIQUE(name)
     );
+
+INSERT INTO equipment (name)
+VALUES ('Canon EOS 70D'), ('Canon EOS 80D'), ('Mavic 2 pro');
+
+CREATE TABLE IF NOT EXISTS users_ids (user_id UUID PRIMARY KEY);
+
+INSERT INTO users_ids (user_id)
+VALUES (
+        '7a8fa447-dd33-4231-8e8d-55250a3358cf'
+    ), (
+        '04cea7c6-96fd-4470-9f0c-b7fa9ce3115f'
+    ), (
+        "cb17769f-b7e3-4ea4-821a-71280d14acbe"
+    )
 
 CREATE TABLE
     IF NOT EXISTS images (
@@ -28,12 +45,6 @@ CREATE TABLE
         FOREIGN KEY (equipment) REFERENCES equipment(id),
         UNIQUE(url)
     );
-
-INSERT INTO categories (name)
-VALUES ('Animals'), ('Birds'), ('Reptails'), ('Insects'), ('plants'), ('Landscapes');
-
-INSERT INTO equipment (name)
-VALUES ('Canon EOS 70D'), ('Canon EOS 80D'), ('Mavic 2 pro');
 
 INSERT INTO
     images (
@@ -138,7 +149,7 @@ VALUES (
         34.562,
         31.687
     ), (
-      'http://localhost:8181/public/IMG_4866.jpg',
+        'http://localhost:8181/public/IMG_4866.jpg',
         'Crested Lark',
         'Crested Lark on a spotted golden thistle', (
             SELECT id
@@ -173,8 +184,7 @@ VALUES (
         'The Agamon Hula, Israel',
         35.619,
         33.099
-    ), 
-    (
+    ), (
         'http://localhost:8181/public/IMG_5154.jpg',
         'mountain gazelle',
         'mountain gazelle in the Gazelle Valley', (
@@ -192,8 +202,7 @@ VALUES (
         'Gazelle Valley, Jerusalem, Israel',
         35.195,
         31.760
-    ),
-    (
+    ), (
         'http://localhost:8181/public/IMG_9287.jpg',
         'Ring-tailed lemur',
         'Ring-tailed lemur yawning in The Biblical zoo', (

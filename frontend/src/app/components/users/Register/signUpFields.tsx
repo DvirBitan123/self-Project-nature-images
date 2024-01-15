@@ -4,7 +4,7 @@ import { createUserMutaion } from "../../../UsersGraphQL/usersMutations";
 import { useNavigate } from 'react-router-dom';
 import { loginMessageAtom } from '../../../Jotai atoms/Jotai_atoms';
 import { useAtom } from 'jotai';
-import { emailValidate, passwordValidate } from '../../../utils/validations';
+import { EMAIL_VALIDATE, PASSWORD_VALIDATE } from '../../../utils/validations';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../passowrdInput';
 import classNames from '../../../utils/ClassNames';
@@ -48,7 +48,7 @@ export default function SigUpFields() {
         <EmailInput
           register={register}
           errors={errors}
-          emailValidate={emailValidate}
+          emailValidate={EMAIL_VALIDATE}
         />
       </div>
 
@@ -61,7 +61,7 @@ export default function SigUpFields() {
         <PasswordInput
           register={register}
           errors={errors}
-          passwordValidate={passwordValidate}
+          passwordValidate={PASSWORD_VALIDATE}
         />
       </div>
 
