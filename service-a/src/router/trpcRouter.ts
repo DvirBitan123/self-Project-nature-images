@@ -29,7 +29,7 @@ export const appRouter = router({
   // EQUIPMENT
   getAllEquipment: publicProcedure.query(EquipmentService.getAllEquipment),
 
-  // USER CATEGORY 
+  // USER CATEGORIES
   getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),
   addUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.addCategoryToUser(input)),
   deleteUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.deleteCategoryFromUser(input)),

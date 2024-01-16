@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai'
 import { categoryAtom, openAtom, idAtom, loginMessageAtom } from '../../Jotai atoms/Jotai_atoms';
 import returnImagesByCategory from './ReturnImagesBycategory';
@@ -8,10 +7,11 @@ export default function GetAllImages() {
   const [imgCategory] = useAtom(categoryAtom);
   const [openModal, setOpenModal] = useAtom(openAtom);
   const [imgID, setImgID] = useAtom(idAtom);
-  // const myToken = localStorage.getItem('images_token');
   
   const data = returnImagesByCategory(imgCategory);
   if (data) {
+    console.log('data:', data);
+    
     const imagesArr = data.map((image) => {
       return (
         <img

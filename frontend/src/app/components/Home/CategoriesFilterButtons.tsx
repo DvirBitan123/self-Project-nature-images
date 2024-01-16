@@ -8,13 +8,13 @@ export default function CategoriesFilterButtons() {
 
 
   const navigation = [
-    { name: 'All', href: '#', current: true },
-    { name: 'Animals', href: '#', current: false },
-    { name: 'Birds', href: '#', current: false },
-    { name: 'Reptails', href: '#', current: false },
-    { name: 'Insects', href: '#', current: false },
-    { name: 'plants', href: '#', current: false },
-    { name: 'Landscapes', href: '#', current: false },
+    { name: 'All' },
+    { name: 'Animals' },
+    { name: 'Birds' },
+    { name: 'Reptails' },
+    { name: 'Insects' },
+    { name: 'plants' },
+    { name: 'Landscapes' },
   ];
 
   return (

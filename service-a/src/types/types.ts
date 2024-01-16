@@ -12,11 +12,6 @@ export interface ImageInterface {
   lat: number;
 }
 
-export interface ErrorMessageObj {
-  errorMessage: string;
-  status: number;
-}
-
 export interface CategoryInterface {
   id: string;
   name: string;
@@ -34,7 +29,9 @@ export interface UserImageInput {
 
 export interface UserOutput {
   image_id?: string
-  category_id?: string
+  url? : string
+  alt?: string
+  category?: string
 
 }
 

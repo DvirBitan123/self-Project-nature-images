@@ -7,9 +7,9 @@ export const checkAndDecodeToken = (token: string) => {
       const userId: string = (decoded as JwtPayload).id;
       return userId;
     }
-  } 
-  catch(error) {
+  }
+  catch (error) {
     console.error(error);
-    return {errorMessage: 'invalid token', status: 400};
+    throw { ...(error as Error), statusCode: 400, message: "invalid token !" };
   }
 }

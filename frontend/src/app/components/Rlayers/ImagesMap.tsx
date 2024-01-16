@@ -50,10 +50,10 @@ export function MapTest() {
             <RStyle.RStyle>
               <RStyle.RIcon scale={0.13} src={mapPin} anchor={[0.5, 0.8]} />
             </RStyle.RStyle>
-            {featuresArr?.map((f, i) => (
+            {featuresArr?.map((featureParam, i) => (
               <RFeature
                 key={i}
-                feature={f.feature}
+                feature={featureParam.feature}
               >
                 <RPopup
                   trigger='hover'
@@ -62,11 +62,11 @@ export function MapTest() {
                   <div className='grid justify-items-center'>
                     <img
                       className='rounded-xl mt-2 mx-2 max-w-36 max-h-36'
-                      src={f.ImgUrl}
-                      alt={f.imgAlt}
+                      src={featureParam.ImgUrl}
+                      alt={featureParam.imgAlt}
                     />
                     <p className='max-w-36 max-h-36 text-sm px-2 py-1'>
-                      {f.imgLocation}
+                      {featureParam.imgLocation}
                     </p>
                   </div>
                 </RPopup>
