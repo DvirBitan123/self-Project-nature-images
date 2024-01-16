@@ -1,8 +1,8 @@
 import { sequelize } from "./connectWithSequelize";
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { v4 as uuidv4 } from 'uuid';
 
-const Categories = sequelize.define('categories', {
+const Categories = sequelize.define<Model>('categories', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
