@@ -2,9 +2,10 @@ import { publicProcedure, router } from "../trpcServer/trpc";
 import * as ImagesService from '../services/imagesService';
 import * as CategoriesService from '../services/categoriesService';
 import * as EquipmentService from '../services/EquipmentService';
-import * as UserService from '../services/userCategoriesService';
+import * as UserCategoriesService from '../services/userCategoriesService';
+import * as UserImagesService from '../services/userImagesService';
 import { z } from 'zod';
-import {addImageZodSchema, EditUserCategory} from "../ZodValidations/zodObjectsValidations";
+import {addImageZodSchema, ZodUserCategory, ZodUserImage} from "../ZodValidations/zodObjectsValidations";
 
 
 export const appRouter = router({
@@ -28,9 +29,14 @@ export const appRouter = router({
   // EQUIPMENT
   getAllEquipment: publicProcedure.query(EquipmentService.getAllEquipment),
 
-  // USER DETAILS
-  getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserService.getUserCategories(input)),
-  getUserImages: publicProcedure.input(z.string()).query(({ input }) => UserService.getUserImages(input)),
-  addUserCategory: publicProcedure.input(EditUserCategory).query(({ input }) => UserService.addCategoryToUser(input)),
-  deleteUserCategory: publicProcedure.input(EditUserCategory).query(({ input }) => UserService.deleteCategoryFromUser(input))
+  // USER CATEGORY 
+  getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),
+  addUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.addCategoryToUser(input)),
+  deleteUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.deleteCategoryFromUser(input)),
+  
+  // USER IMAGES
+  getUserImages: publicProcedure.input(z.string()).query(({ input }) => UserImagesService.getUserImages(input)),
+  addUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.addImageToUser(input)),
+  deleteUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.deleteImageFromUser(input)),
+
 });

@@ -12,9 +12,14 @@ const addImageZodSchema = z.object({
     lat: z.number()
   });
 
-const EditUserCategory = z.object({
+const ZodUserCategory = z.object({
   token: z.string(),
   categoryId: z.string().uuid()
 })
 
-export {addImageZodSchema, EditUserCategory}
+const ZodUserImage = z.object({
+  token: z.string(),
+  imageId: z.string().uuid()
+})
+
+export {addImageZodSchema, ZodUserCategory, ZodUserImage}
