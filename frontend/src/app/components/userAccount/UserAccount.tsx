@@ -1,36 +1,48 @@
-import { trpc } from '../../utils/ConnectTotRPC';
-import { trpc2 } from '../../utils/ConnectTotRPC';
+import { trpc, trpc2 } from '../../utils/ConnectTotRPC';
 import CategoriesSwitch from '../../utils/MySwitch';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../router/routes';
-import jwt from 'jsonwebtoken'
 import { useEffect, useState } from 'react';
 import { BackspaceIcon } from '@heroicons/react/24/outline';
-import { deleteImageFunc } from './EditUserImages';
-
+import { UserFuncsOutput } from '../../types/ImagesTypes';
 
 export default function UserAccount() {
   const navigate = useNavigate();
   const userToken = localStorage.getItem('images_token');
-  const { data: allCategories, error: allCatError } = trpc.getAllCategories.useQuery();
+  const { data: allCategories } = trpc.getAllCategories.useQuery();
   const { data: userCategories, error: userCatError } = trpc.getUserCategories.useQuery(userToken!);
   const { data: userImages, error: imagesError } = trpc.getUserImages.useQuery(userToken!);
-  // const [mashu, setMashue] = useState<JSX.Element[]>([]);
+  const [imagesState, setImagesState] = useState<UserFuncsOutput[]>([]);
+  
+  useEffect(() => {
+    if (userImages) setImagesState(userImages);
+  }, [userImages]) 
+
   useEffect(() => {
     if (userCatError || imagesError) {
       localStorage.setItem('images_token', '');
-      navigate(ROUTES.LOGIN)
+      navigate(ROUTES.LOGIN);
     }
-  }, [userCatError, imagesError])
+  }, [userCatError, imagesError]);
 
+  const deleteImageFunc = async (userToken: string, imageId: string) => {
+    const imageInput = {
+      token: userToken,
+      imageId: imageId
+    };
+    await trpc2.deleteUserImage.query(imageInput);
+    const updatedImages = imagesState.filter((image) => image.image_id !== imageId);
+    setImagesState(updatedImages);
+  }
+  
 
   if (userCategories && userImages && allCategories) {
     const categoriesArr = allCategories.map((item) => {
       let checked = false;
-      if (userCategories.includes(item.name)) checked = true
+      if (userCategories.includes(item.name)) checked = true;
       return (
         <div className='flex p-2' key={item.id}>
-          <p key={item.name} className='pr-1 '>
+          <p key={item.name} className='pr-1'>
             {item.name}
           </p>
           <CategoriesSwitch 
@@ -42,11 +54,11 @@ export default function UserAccount() {
       )
     })
 
-    const imagesArr = userImages.map((item) => {
+    const imagesArr = imagesState.map((item) => {
       return (
         <div key={item.url} className='relative w-72 max-h-72 p-4 m-4'>
-          <button 
-              className='border-1 border-black max-w-30 max-h-20 bg-blue-500'
+          <button
+              className='rounded flex p-2 max-w-30 max-h-20 bg-blue-500'
               key={item.alt}
               onClick={async () => { 
                 await deleteImageFunc(userToken!, item.image_id!);
@@ -54,22 +66,16 @@ export default function UserAccount() {
             >
               delete image {<BackspaceIcon className='w-8 h-8' />}
           </button>
-            
-            
           <img
             className="rounded-3xl p-4 object-cover max-w-72 max-h-72 cursor-pointer ease-in-out duration-300 hover:origin-bottom hover:scale-105"
-            key={item.image_id} src={item.url} alt={item.alt}
+            key={item.image_id} 
+            src={item.url} 
+            alt={item.alt}
           />
-          {/* {<BackspaceIcon
-            className=' w-10 h-10 absolute top-1/4 right-1/4 '
-          //  className='absolute top-1/4 right-1/4 transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 border-none rounded text-cyan-500 max-w-4 max-h-4'
-          />
-          } */}
         </div>
       )
     })
     
-
 
     return (
       <>

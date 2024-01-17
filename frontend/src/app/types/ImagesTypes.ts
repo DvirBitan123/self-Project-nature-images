@@ -21,3 +21,10 @@ export interface FeatureParam {
   imgLocation: string;
   imgId: string;
 }
+
+export interface UserFuncsOutput {
+  image_id?: string
+  url? : string
+  alt?: string
+  category?: string
+}

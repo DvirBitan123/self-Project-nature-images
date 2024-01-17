@@ -32,7 +32,6 @@ export interface UserOutput {
   url? : string
   alt?: string
   category?: string
-
 }
 
 
