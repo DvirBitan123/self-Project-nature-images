@@ -1,5 +1,5 @@
 import { trpc, trpc2 } from '../../utils/ConnectTotRPC';
-import CategoriesSwitch from '../../utils/MySwitch';
+import CategoriesSwitch from '../../utils/CategorySwitch';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../router/routes';
 import { useEffect, useState } from 'react';
@@ -78,8 +78,10 @@ export default function UserAccount() {
     
 
     return (
-      <>
-        <h1>Hello this is the user account PAGE!!!!</h1>
+      <div
+        className='place-content-center'
+      >
+        <h1 className='grid place-content-center text-4xl font-medium'>Welcome</h1>
         <br></br>
         <div >
           <p>categories:</p>
@@ -91,7 +93,7 @@ export default function UserAccount() {
           <br></br>
           {imagesArr}
         </div>
-      </>
+      </div>
     )
   }
 }

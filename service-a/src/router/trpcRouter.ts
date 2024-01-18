@@ -36,6 +36,7 @@ export const appRouter = router({
   
   // USER IMAGES
   getUserImages: publicProcedure.input(z.string()).query(({ input }) => UserImagesService.getUserImages(input)),
+  getUserImagesIds: publicProcedure.input(z.string()).query(({ input }) => UserImagesService.getUserImgIds(input)),
   addUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.addImageToUser(input)),
   deleteUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.deleteImageFromUser(input)),
 

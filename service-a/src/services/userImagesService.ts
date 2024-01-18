@@ -26,6 +26,32 @@ export const getUserImages = async (token: string) => {
   }
 }
 
+export const getUserImgIds = async (token: string) => {
+  try {
+    const res = checkAndDecodeToken(token);
+    const userId = res;
+    const userImagesQuery = `
+      select image_id from users_images 
+          where user_id = '${userId}'
+    `;
+    const DalRes = await DAL.returnUserImgsId(userImagesQuery);
+    console.log('userImagesIds:', DalRes);
+    if (DalRes === undefined || DalRes === null) {
+      throw new Error('data not found');
+    };
+
+    const userImagesIds = DalRes.map((image) => {
+      return image.image_id
+    });
+    
+    return userImagesIds
+  }
+  catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
 
 export const addImageToUser = async (input: UserImageInput) => {
   const { token, imageId } = input;
@@ -45,8 +71,23 @@ export const addImageToUser = async (input: UserImageInput) => {
              '${imageId}'
         )`;
     const addResult = await DAL.userDetailsByQuery(addImageQuery);
-    if (addResult)
-      return 'Image added successfully to the user'
+    if (addResult) {
+      const userImagIdsQuery = `
+      select image_id from users_images 
+          where user_id = '${userId}'
+    `;
+      const res = await DAL.returnUserImgsId(userImagIdsQuery) 
+      if (res === undefined || res === null) {
+        throw new Error('data not found');
+      };
+  
+      const userImagesIds = res.map((image) => {
+        return image.image_id
+      });
+      
+      return userImagesIds
+    }
+      // return 'Image added successfully to the user'
   }
   catch (error) {
     console.error(error);
@@ -64,7 +105,21 @@ export const deleteImageFromUser = async (input: UserImageInput) => {
         where user_id = '${userId}' and image_id = '${imageId}'
     `;
     const deleteResult = await DAL.userDetailsByQuery(deleteImageQuery);
-    return 'image deleted from user successfully';
+    
+    const userImagIdsQuery = `
+    select image_id from users_images 
+        where user_id = '${userId}'
+  `;
+    const DalResult = await DAL.returnUserImgsId(userImagIdsQuery) ;
+      if (DalResult === undefined || DalResult === null) {
+        throw new Error('data not found');
+      };
+  
+      const userImagesIds = DalResult.map((image) => {
+        return image.image_id
+      });
+      
+      return userImagesIds
   }
   catch (error) {
     console.error(error);

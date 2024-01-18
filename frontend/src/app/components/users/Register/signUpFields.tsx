@@ -2,17 +2,16 @@ import { useForm, FieldValues } from 'react-hook-form';
 import { useMutation } from "@apollo/client";
 import { createUserMutaion } from "../../../UsersGraphQL/usersMutations";
 import { useNavigate } from 'react-router-dom';
-import { loginMessageAtom } from '../../../Jotai atoms/Jotai_atoms';
 import { useAtom } from 'jotai';
 import { EMAIL_VALIDATE, PASSWORD_VALIDATE } from '../../../utils/validations';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../passowrdInput';
 import classNames from '../../../utils/ClassNames';
+// import ROUTES from 'frontend/src/app/router/routes';
 
 export default function SigUpFields() {
   const [craeteNewUser, { error: mutationError }] = useMutation(createUserMutaion);
   const navigate = useNavigate();
-  const [userEmail, setUserEmail] = useAtom(loginMessageAtom);
   const {
     register,
     watch,
@@ -29,8 +28,7 @@ export default function SigUpFields() {
         variables: { email: inputEmail, password: inputPassword },
         onCompleted: (data) => {
           const { createUser: { user: { email } } } = data;
-          setUserEmail(email);
-          navigate('/ ');        
+          // navigate(ROUTES.LOGIN);        
         }
       })
 
