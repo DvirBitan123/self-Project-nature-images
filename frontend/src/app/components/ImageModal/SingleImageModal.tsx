@@ -13,7 +13,7 @@ interface Props {
 export default function SingleImageModal(props: Props) {
   const cancelButtonRef = useRef(null);
   const singleImage = props.image;
-  
+
   if (props.image)
     return (
       <>
@@ -42,42 +42,43 @@ export default function SingleImageModal(props: Props) {
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
                     <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                       <div className="sm:flex sm:items-start">
                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                          <Dialog.Title as="h3" className="text-xl font-semibold leading-6 text-gray-900">
+                          <Dialog.Title as="h3" className="text-xl font-semibold leading-6 text-gray-900 grid justify-items-center">
                             Image Details
                           </Dialog.Title>
                           <div className="mt-2">
                             <img
-                              className="rounded-3xl p-4 max-w-3xl max-h-3xl"
+                              className="mx-7 my-4 rounded-2xl max-w-3xl max-h-fit"
                               src={singleImage?.url} alt={singleImage?.alt}
                             />
-                            <p className="text-lg text-black-800">
-                              {singleImage?.description}
-                            </p>
-                            <br></br>
-                            
-                            <p className="inline-flex text-base text-black-700">
-                              <IdentificationIcon className="h-5 w-5 mr-3" aria-hidden="true" />
-                              {singleImage?.category}<br></br>
-                            </p>
-                            <br></br>
-                            <p className="inline-flex text-base text-black-700">
-                              <CameraIcon className="h-5 w-5 mr-3" aria-hidden="true" />
-                              {singleImage?.equipment}
-                            </p>
-                            <br></br>
-                            <p className="inline-flex text-base text-black-700">
-                              <CalendarIcon className="h-5 w-5 mr-3" aria-hidden="true" />
-                              {singleImage?.date}
-                            </p>
-                            <br></br>
-                            <p className="inline-flex text-base text-black-700">
-                              <MapPinIcon className="h-5 w-5 mr-3" aria-hidden="true" />
-                              {singleImage?.location}
-                            </p>
+                            <div className='mx-8'>
+                              <p className="text-lg text-black-800">
+                                {singleImage?.description}
+                              </p>
+                              <br></br>
+                              <p className="inline-flex text-base text-black-700">
+                                <IdentificationIcon className="h-5 w-5 mr-3" aria-hidden="true" />
+                                {singleImage?.category}<br></br>
+                              </p>
+                              <br></br>
+                              <p className="inline-flex text-base text-black-700">
+                                <CameraIcon className="h-5 w-5 mr-3" aria-hidden="true" />
+                                {singleImage?.equipment}
+                              </p>
+                              <br></br>
+                              <p className="inline-flex text-base text-black-700">
+                                <CalendarIcon className="h-5 w-5 mr-3" aria-hidden="true" />
+                                {singleImage?.date}
+                              </p>
+                              <br></br>
+                              <p className="inline-flex text-base text-black-700">
+                                <MapPinIcon className="h-5 w-5 mr-3" aria-hidden="true" />
+                                {singleImage?.location}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>

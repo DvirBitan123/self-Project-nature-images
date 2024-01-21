@@ -2,7 +2,6 @@ import { trpc2 } from '../../utils/ConnectTotRPC';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 
-
 interface AddProps {
   token: string
   imageId: string
