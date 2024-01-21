@@ -1,8 +1,8 @@
-import SignUp from "../components/users/Register/signUp";
+import SigUp from "../components/users/Register/signUp";
 
 export default function RegisterPage() {
   
   return(
-    <SignUp/>
+    <SigUp/>
   )
 }
