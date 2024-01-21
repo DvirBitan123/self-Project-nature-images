@@ -1,14 +1,17 @@
 import { useAtom } from 'jotai';
-import { categoryAtom, openAtom, idAtom, usersImagesAtom } from '../../Jotai atoms/Jotai_atoms';
+import { categoryAtom } from '../../Jotai atoms/Jotai_atoms';
 import CategoriesFilterButtons from './CategoriesFilterButtons';
 import { trpc, trpc2 } from '../../utils/ConnectTotRPC';
 import { LikeButton } from './LikeButton';
 import { ReactNode, useEffect, useState } from 'react';
+import SingleImageModal from '../ImageModal/SingleImageModal';
+import { ImageInterface } from '../../types/ImagesTypes';
+
 
 export default function AllImages(): ReactNode {
   const [imgCategory] = useAtom(categoryAtom);
-  const [openModal, setOpenModal] = useAtom(openAtom);
-  const [imgID, setImgID] = useAtom(idAtom);
+  const [openModal, setOpenModal] = useState(false);
+  const [singleImage, setSingleImage] = useState<ImageInterface>();
   const userToken = localStorage.getItem('images_token');
 
   const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
@@ -52,14 +55,14 @@ export default function AllImages(): ReactNode {
                     token={userToken!}
                     imageId={image.id}
                     checked={image.checked}
-                    setuserIds={setUsersImgIds}
+                    setUserIds={setUsersImgIds}
                   />
                   <img
                     className="rounded-3xl p-4 w-full h-auto cursor-pointer "
                     key={image.id} src={image.url} alt={image.alt}
                     onClick={() => {
                       setOpenModal(true);
-                      setImgID(image.id)
+                      setSingleImage(image)
                     }}
                   />
                 </div>
@@ -67,6 +70,11 @@ export default function AllImages(): ReactNode {
             })}
           </div>
         </div>
+        <SingleImageModal 
+          image={singleImage!}
+          openModal={openModal} 
+          setOpenModal={setOpenModal} 
+        />
       </>
     )
   }

@@ -6,9 +6,5 @@ export const openAtom = atom(false);
 
 export const idAtom = atom('');
 
-export const urlAtom = atom<string>('');
-
-export const imgNameAtom = atom<string>('');
-
 export const usersImagesAtom = atom<(string[]| undefined)>([]);
 

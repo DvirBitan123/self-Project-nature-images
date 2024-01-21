@@ -5,6 +5,7 @@ import { trpc } from './utils/ConnectTotRPC';
 import NavBar from './components/NavBar';
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Router from './router/Router';
+// import { Outlet } from 'react-router-dom';
 
 export function App() {
   const [queryClient] = useState(() => new QueryClient());

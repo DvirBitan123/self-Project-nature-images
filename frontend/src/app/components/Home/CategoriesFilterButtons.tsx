@@ -6,7 +6,6 @@ import { categoryAtom } from "../../Jotai atoms/Jotai_atoms";
 export default function CategoriesFilterButtons() {
   const [imgCategory, setImgCategory] = useAtom(categoryAtom);
 
-
   const navigation = [
     { name: 'All' },
     { name: 'Animals' },
@@ -24,7 +23,6 @@ export default function CategoriesFilterButtons() {
           {navigation.map((item) => (
             <div
               key={item.name}
-              // href={item.href}
               onClick={() => setImgCategory(item.name)}
               className={classNames(
                 ' text-gray-800 ease-in duration-150 hover:bg-emerald-500 hover:text-white',

@@ -7,7 +7,7 @@ interface AddProps {
   token: string
   imageId: string
   checked: boolean
-  setuserIds: React.Dispatch<React.SetStateAction<string[] | undefined>>
+  setUserIds: React.Dispatch<React.SetStateAction<string[] | undefined>>
 };
 
 export function LikeButton(props: AddProps) {
@@ -21,11 +21,11 @@ export function LikeButton(props: AddProps) {
     if (props.token !== '') {      
       if (props.checked === false) {
         const userArr = await trpc2.addUserImage.query(imageInput);
-        props.setuserIds(userArr);
+        props.setUserIds(userArr);
       }
       else if (props.checked === true) {
         const userArr = await trpc2.deleteUserImage.query(imageInput);
-        props.setuserIds(userArr);
+        props.setUserIds(userArr);
       }
     }
   }
