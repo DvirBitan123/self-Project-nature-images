@@ -10,14 +10,17 @@ export default function AllImages(): ReactNode {
   const [openModal, setOpenModal] = useAtom(openAtom);
   const [imgID, setImgID] = useAtom(idAtom);
   const userToken = localStorage.getItem('images_token');
-  
+
   const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
   const [usersImgIds, setUsersImgIds] = useState<string[] | undefined>([]);
   
   useEffect(() => {
     const fetchUserImages = async () => {
-      const data = await trpc2.getUserImagesIds.query(userToken!);
-      setUsersImgIds(data);
+      if (userToken !== '') {
+        console.log('user token:', userToken);
+        const data = await trpc2.getUserImagesIds.query(userToken!);
+        setUsersImgIds(data);
+      }
     };
     fetchUserImages();
   }, [])
@@ -26,7 +29,6 @@ export default function AllImages(): ReactNode {
     const imagesArr = allImages.map((image) => {
       let checked = false;
       if (usersImgIds?.includes(image.id)) {
-        console.log("image passed:", image.alt);
         checked = true;
       }
       return { ...image, checked }
@@ -39,9 +41,12 @@ export default function AllImages(): ReactNode {
           <CategoriesFilterButtons />
           <br></br>
           <div className='flex justify-start flex-wrap'>
-            {imagesArr.map((image) => {              
+            {imagesArr.map((image) => {
               return (
-                <div key={image.url}>
+                <div 
+                  key={image.url} 
+                  className='relative max-w-sm max-h-sm ease-in-out duration-300 hover:origin-bottom hover:scale-105'
+                >
                   <LikeButton
                     key={image.alt}
                     token={userToken!}
@@ -50,7 +55,7 @@ export default function AllImages(): ReactNode {
                     setuserIds={setUsersImgIds}
                   />
                   <img
-                    className="rounded-3xl p-4 max-w-sm max-h-sm cursor-pointer ease-in-out duration-300 hover:origin-bottom hover:scale-105"
+                    className="rounded-3xl p-4 w-full h-auto cursor-pointer "
                     key={image.id} src={image.url} alt={image.alt}
                     onClick={() => {
                       setOpenModal(true);
