@@ -37,8 +37,6 @@ export default function Login() {
             console.log(jwtToken);
             localStorage.setItem('images_token', jwtToken);
             setUserEmail(inputEmail);
-            console.log("inputEmail:", inputEmail);
-            console.log("userEmail:", userEmail);
             navigate(ROUTES.HOME);
           }
           else setWrongMessage('⚠ Wrong Email or Password');

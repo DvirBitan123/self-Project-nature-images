@@ -24,7 +24,6 @@ export default function AllImages(): ReactNode {
   useEffect(() => {
     const fetchUserImages = async () => {
       if (userToken !== '') {
-        console.log('user token:', userToken);
         const data = await trpc2.getUserImagesIds.query(userToken!);
         setUsersImgIds(data);
       }

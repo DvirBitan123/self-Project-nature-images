@@ -28,7 +28,7 @@ export default function SigUp() {
         variables: { email: inputEmail, password: inputPassword },
         onCompleted: (data) => {
           const insertUser = async () => {
-            const { createUser: { user: { id, email } } } = data;
+            const { createUser: { user: { id } } } = data;
             await trpc2.createNewUser.query(id);
             navigate(ROUTES.LOGIN);        
           };
