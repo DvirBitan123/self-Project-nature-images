@@ -8,17 +8,21 @@ import classNames from '../../../utils/ClassNames';
 import { authMutation } from '../../../UsersGraphQL/authMutation';
 import { useState } from 'react';
 import ROUTES from '../../../router/routes';
+import { useAtom } from 'jotai';
+import { userEmailAtom } from '../../../Jotai atoms/Jotai_atoms';
+
 
 export default function Login() {
+  const [wrongMessage, setWrongMessage] = useState('');
+  const [userEmail, setUserEmail] = useAtom(userEmailAtom);
+
   const {
     register,
     watch,
     formState: { errors, isValid },
-  } = useForm({ mode: "onChange" });
-
+  } = useForm({ mode: "onChange"});
   const navigate = useNavigate();
   const [authUser, { error: mutationError }] = useMutation(authMutation);
-  const [wrongMessage, setWrongMessage] = useState('');
   const inputEmail = watch('email');
   const inputPassword = watch('password');
 
@@ -32,6 +36,9 @@ export default function Login() {
           if (jwtToken) {
             console.log(jwtToken);
             localStorage.setItem('images_token', jwtToken);
+            setUserEmail(inputEmail);
+            console.log("inputEmail:", inputEmail);
+            console.log("userEmail:", userEmail);
             navigate(ROUTES.HOME);
           }
           else setWrongMessage('⚠ Wrong Email or Password');

@@ -1,4 +1,4 @@
-import * as DAL from '../DAL/userDAL';
+import * as DAL from '../DAL/userFavoritesDAL';
 import { UserCategoryInput, UserOutput } from '../types/types';
 import { checkAndDecodeToken } from '../utils/jwtDecode';
 

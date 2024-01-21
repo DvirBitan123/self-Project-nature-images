@@ -4,7 +4,7 @@ import { EmailInputInterface } from "../../types/inputsInterface";
 const EmailInput: FC<EmailInputInterface> = ({
   register,
   emailValidate,
-  errors
+  errors,
 }) => {
   return (
     <>

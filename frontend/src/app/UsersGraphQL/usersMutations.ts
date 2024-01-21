@@ -10,6 +10,7 @@ export const createUserMutaion = gql`
         }
       }) {
       user {
+        id
         email
         password
       }

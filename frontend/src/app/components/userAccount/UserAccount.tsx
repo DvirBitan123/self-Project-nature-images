@@ -3,7 +3,7 @@ import CategoriesSwitch from '../../utils/CategorySwitch';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../router/routes';
 import { useEffect, useState } from 'react';
-import { BackspaceIcon } from '@heroicons/react/24/outline';
+import { BackspaceIcon } from '@heroicons/react/24/solid';
 import { UserFuncsOutput } from '../../types/ImagesTypes';
 
 export default function UserAccount() {
@@ -16,7 +16,7 @@ export default function UserAccount() {
   
   useEffect(() => {
     if (userImages) setImagesState(userImages);
-  }, [userImages]) 
+  }, [userImages]);
 
   useEffect(() => {
     if (userCatError || imagesError) {
@@ -34,21 +34,20 @@ export default function UserAccount() {
     const updatedImages = imagesState.filter((image) => image.image_id !== imageId);
     setImagesState(updatedImages);
   }
-  
 
   if (userCategories && userImages && allCategories) {
     const categoriesArr = allCategories.map((item) => {
       let checked = false;
       if (userCategories.includes(item.name)) checked = true;
       return (
-        <div className='flex p-2' key={item.id}>
-          <p key={item.name} className='pr-1'>
+        <div className='flex justify-between py-2' key={item.id}>
+          <p key={item.name} className='pr-6'>
             {item.name}
           </p>
-          <CategoriesSwitch 
-            startVal={checked} 
-            token={userToken!} 
-            categoryId={item.id} 
+          <CategoriesSwitch
+            startVal={checked}
+            token={userToken!}
+            categoryId={item.id}
           />
         </div>
       )
@@ -56,42 +55,46 @@ export default function UserAccount() {
 
     const imagesArr = imagesState.map((item) => {
       return (
-        <div key={item.url} className='relative w-72 max-h-72 p-4 m-4'>
+        <div key={item.url} className='relative max-w-64 max-h-xs m-4'>
           <button
-              className='rounded flex p-2 max-w-30 max-h-20 bg-blue-500'
-              key={item.alt}
-              onClick={async () => { 
-                await deleteImageFunc(userToken!, item.image_id!);
-              }}
-            >
-              delete image {<BackspaceIcon className='w-8 h-8' />}
+            className='absolute top-1 right-3 rounded-xl'
+            key={item.alt}
+            onClick={async () => {
+              await deleteImageFunc(userToken!, item.image_id!);
+            }}
+          >
+            {<BackspaceIcon className='w-8 h-8' />}
           </button>
           <img
-            className="rounded-3xl p-4 object-cover max-w-72 max-h-72 cursor-pointer ease-in-out duration-300 hover:origin-bottom hover:scale-105"
-            key={item.image_id} 
-            src={item.url} 
+            className="rounded-3xl max-w-full h-auto"
+            key={item.image_id}
+            src={item.url}
             alt={item.alt}
           />
         </div>
       )
     })
-    
+
 
     return (
-      <div
-        className='place-content-center'
-      >
-        <h1 className='grid place-content-center text-4xl font-medium'>Welcome</h1>
+      <div>
+        <h1 className='grid place-content-center text-4xl font-medium'>Your Collections</h1>
         <br></br>
-        <div >
-          <p>categories:</p>
-          <div>{categoriesArr}</div>
-        </div>
-        <br></br>
-        <p>Images you liked:</p>
-        <div className='flex justify-start flex-wrap'>
-          <br></br>
-          {imagesArr}
+        <div className='flex justify-between mx-5'>
+          <div>
+            <p className='grid place-content-center text-2xl font-medium text-stone-700'>
+              Images you liked:
+            </p>
+            <div className='flex justify-start flex-wrap max-w-xl'>
+              {imagesArr}
+            </div>
+          </div>
+          <div className='mx-20'>
+            <p className='text-2xl font-medium text-stone-700'>
+              Categories:
+            </p>
+            <div>{categoriesArr}</div>
+          </div>
         </div>
       </div>
     )

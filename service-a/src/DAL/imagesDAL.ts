@@ -1,5 +1,5 @@
 import { sequelize } from '../sequelize/connectWithSequelize';
-import { Images, Categories, Equipment } from '../sequelize/sequelizeModels';
+import { Images } from '../sequelize/sequelizeModels';
 import { ImageInterface } from '../types/types';
 
 export const getDatawithQuery = async (query: string) => {

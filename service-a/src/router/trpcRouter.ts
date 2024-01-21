@@ -2,6 +2,7 @@ import { publicProcedure, router } from "../trpcServer/trpc";
 import * as ImagesService from '../services/imagesService';
 import * as CategoriesService from '../services/categoriesService';
 import * as EquipmentService from '../services/EquipmentService';
+import * as UsersService from '../services/usersService';
 import * as UserCategoriesService from '../services/userCategoriesService';
 import * as UserImagesService from '../services/userImagesService';
 import { z } from 'zod';
@@ -28,6 +29,16 @@ export const appRouter = router({
 
   // EQUIPMENT
   getAllEquipment: publicProcedure.query(EquipmentService.getAllEquipment),
+
+  //USER
+  getAllUsers: publicProcedure.query(UsersService.getAllUsers),
+  createNewUser: publicProcedure.input(z.string().uuid()).query(({ input }) => {
+    console.log('1');
+    console.log('input:', input);
+
+    UsersService.createNewUser(input)
+  }),
+
 
   // USER CATEGORIES
   getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),

@@ -1,5 +1,5 @@
 import { checkAndDecodeToken } from '../utils/jwtDecode';
-import * as DAL from '../DAL/userDAL';
+import * as DAL from '../DAL/userFavoritesDAL';
 import { UserImageInput } from '../types/types';
 
 export const getUserImages = async (token: string) => {

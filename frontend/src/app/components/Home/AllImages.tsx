@@ -6,6 +6,10 @@ import { LikeButton } from './LikeButton';
 import { ReactNode, useEffect, useState } from 'react';
 import SingleImageModal from '../ImageModal/SingleImageModal';
 import { ImageInterface } from '../../types/ImagesTypes';
+import { ToastContainer } from 'react-toastify';
+
+
+
 
 
 export default function AllImages(): ReactNode {
@@ -16,7 +20,7 @@ export default function AllImages(): ReactNode {
 
   const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
   const [usersImgIds, setUsersImgIds] = useState<string[] | undefined>([]);
-  
+
   useEffect(() => {
     const fetchUserImages = async () => {
       if (userToken !== '') {
@@ -46,8 +50,8 @@ export default function AllImages(): ReactNode {
           <div className='flex justify-start flex-wrap'>
             {imagesArr.map((image) => {
               return (
-                <div 
-                  key={image.url} 
+                <div
+                  key={image.url}
                   className='relative max-w-sm max-h-sm ease-in-out duration-300 hover:origin-bottom hover:scale-105'
                 >
                   <LikeButton
@@ -70,11 +74,12 @@ export default function AllImages(): ReactNode {
             })}
           </div>
         </div>
-        <SingleImageModal 
+        <SingleImageModal
           image={singleImage!}
-          openModal={openModal} 
-          setOpenModal={setOpenModal} 
+          openModal={openModal}
+          setOpenModal={setOpenModal}
         />
+        <ToastContainer position="bottom-left" theme='colored' />
       </>
     )
   }

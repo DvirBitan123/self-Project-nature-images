@@ -1,6 +1,7 @@
 import { useForm, FieldValues } from 'react-hook-form';
 import { useMutation } from "@apollo/client";
 import { createUserMutaion } from "../../../UsersGraphQL/usersMutations";
+import { trpc2 } from '../../../utils/ConnectTotRPC';
 import { useNavigate } from 'react-router-dom';
 import { EMAIL_VALIDATE, PASSWORD_VALIDATE } from '../../../utils/validations';
 import EmailInput from '../EmailInput';
@@ -26,11 +27,15 @@ export default function SigUp() {
       await craeteNewUser({
         variables: { email: inputEmail, password: inputPassword },
         onCompleted: (data) => {
-          const { createUser: { user: { email } } } = data;
-          navigate(ROUTES.LOGIN);        
+          const insertUser = async () => {
+            const { createUser: { user: { id, email } } } = data;
+            await trpc2.createNewUser.query(id);
+            navigate(ROUTES.LOGIN);        
+          };
+          insertUser();
         }
-      })
-
+      });
+      
     } catch {
       throw new Error(`mutationError: ${mutationError}`);
     }

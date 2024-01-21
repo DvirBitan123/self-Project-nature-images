@@ -2,6 +2,9 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, UserCircleIcon, } from '@heroicons/react/24/outline';
 import ROUTES from '../router/routes';
+import { useAtom } from 'jotai';
+import { userEmailAtom } from '../Jotai atoms/Jotai_atoms';
+import classNames from '../utils/ClassNames';
 
 const navigation = [
   { name: 'Images', href: ROUTES.HOME, current: false },
@@ -10,11 +13,12 @@ const navigation = [
 
 ];
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+// function classNames(...classes: string[]) {
+//   return classes.filter(Boolean).join(' ')
+// }
 
 export default function NavBar() {
+  const [userEmail, setUserEmail] = useAtom(userEmailAtom);
 
   return (
     <Disclosure as="nav" className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
@@ -23,7 +27,6 @@ export default function NavBar() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
@@ -51,7 +54,6 @@ export default function NavBar() {
                       >
                         <div
                           key={item.name}
-                          // href={item.href}
                           className={classNames(
                             'text-gray-200 ease-out duration-200 hover:bg-rose-500 hover:text-white',
                             'rounded-md px-3 py-2 text-sm font-medium cursor-pointer'
@@ -66,19 +68,18 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-medium text-sm">
-                {/* <div className='ease-out duration-200 rounded-md px-3 py-2 text-gray-300 hover:bg-rose-500 hover:text-white'> */}
-                  <a
-                    href='/Login'
-                    className='mr-4 rounded-md px-3 py-2 text-gray-300 ease-out duration-200 hover:bg-fuchsia-500 hover:text-white'
-                  >
-                    Login
-                  </a>
-                  <a
-                    className='text-gray-300 rounded-md px-3 py-2 ease-out duration-200 hover:bg-purple-500 hover:text-white'
-                    href='/Register'
-                  >
-                    Sign Up
-                  </a>
+                <a
+                  href='/Login'
+                  className='mr-4 rounded-md px-3 py-2 text-gray-300 ease-out duration-200 hover:bg-fuchsia-500 hover:text-white'
+                >
+                  Login
+                </a>
+                <a
+                  className='text-gray-300 rounded-md px-3 py-2 ease-out duration-200 hover:bg-purple-500 hover:text-white'
+                  href='/Register'
+                >
+                  Sign Up
+                </a>
                 {/* </div> */}
                 <Menu as="div" className="relative ml-3">
                   <div>
@@ -101,9 +102,22 @@ export default function NavBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
+                            href={ROUTES.USER}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          >
+                            {userEmail}
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            onClick={() => localStorage.setItem('images_token', '')}
+                            onClick={() => {
+                              localStorage.setItem('images_token', '')
+                              localStorage.setItem('user_email', '')
+                            }}
                           >
                             Sign out
                           </a>
