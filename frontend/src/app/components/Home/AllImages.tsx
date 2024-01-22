@@ -10,8 +10,6 @@ import { ToastContainer } from 'react-toastify';
 
 
 
-
-
 export default function AllImages(): ReactNode {
   const [imgCategory] = useAtom(categoryAtom);
   const [openModal, setOpenModal] = useState(false);
@@ -29,7 +27,7 @@ export default function AllImages(): ReactNode {
       }
     };
     fetchUserImages();
-  }, [])
+  }, []);
 
   if (allImages) {
     const imagesArr = allImages.map((image) => {

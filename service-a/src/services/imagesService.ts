@@ -3,6 +3,7 @@ import { convertCatNameToId } from './categoriesService';
 import { convertEqNameToId } from './EquipmentService';
 import { allImagesQuery } from '../sequelize/sqlQueries';
 import { ImageInterface } from '../types/types';
+import { eventEmitter } from '../router/trpcRouter';
 
 export const getAllImages = async () => {
   try {
@@ -61,7 +62,7 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
       if (img.url === newImage.url)
         throw new Error(`image allready exist in the DB`);
     }
-
+    const categoryName = newImage.category;
     const categoryId = await convertCatNameToId(newImage.category);
     const equipmentId = await convertEqNameToId(newImage.equipment);
 
@@ -72,6 +73,8 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
     if (newImgRes === undefined || newImgRes === null) {
       throw new Error('data not found');
     }
+    const uploadMessage = `New Image had been uploaded to ${categoryName} category!`;
+    eventEmitter.emit("upload", uploadMessage);
     return newImgRes
 
   } catch (error) {

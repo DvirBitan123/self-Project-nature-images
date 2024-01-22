@@ -1,4 +1,4 @@
-import { publicProcedure, router } from "../trpcServer/trpc";
+import { t, publicProcedure, router } from "../trpcServer/trpc";
 import * as ImagesService from '../services/imagesService';
 import * as CategoriesService from '../services/categoriesService';
 import * as EquipmentService from '../services/EquipmentService';
@@ -7,7 +7,11 @@ import * as UserCategoriesService from '../services/userCategoriesService';
 import * as UserImagesService from '../services/userImagesService';
 import { z } from 'zod';
 import {addImageZodSchema, ZodUserCategory, ZodUserImage} from "../ZodValidations/zodObjectsValidations";
+import { observable } from "@trpc/server/observable";
+import { emit } from "process";
+import { EventEmitter } from "stream";
 
+export const eventEmitter = new EventEmitter();
 
 export const appRouter = router({
   //IMAGES
@@ -32,23 +36,28 @@ export const appRouter = router({
 
   //USER
   getAllUsers: publicProcedure.query(UsersService.getAllUsers),
-  createNewUser: publicProcedure.input(z.string().uuid()).query(({ input }) => {
-    console.log('1');
-    console.log('input:', input);
+  createNewUser: publicProcedure.input(z.string().uuid()).query(({ input }) => UsersService.createNewUser(input)),
 
-    UsersService.createNewUser(input)
-  }),
-
-
-  // USER CATEGORIES
-  getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),
-  addUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.addCategoryToUser(input)),
-  deleteUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.deleteCategoryFromUser(input)),
-  
   // USER IMAGES
   getUserImages: publicProcedure.input(z.string()).query(({ input }) => UserImagesService.getUserImages(input)),
   getUserImagesIds: publicProcedure.input(z.string()).query(({ input }) => UserImagesService.getUserImgIds(input)),
   addUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.addImageToUser(input)),
   deleteUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.deleteImageFromUser(input)),
+  
+  onUpload: t.procedure.subscription(() => {
+    return observable<string>(emit => {
+      eventEmitter.on("upload", emit.next)
+
+      return () => {
+        eventEmitter.off("upload", emit.next)
+      }
+    })
+  }),
+  
+  // USER CATEGORIES
+  getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),
+  addUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.addCategoryToUser(input)),
+  deleteUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.deleteCategoryFromUser(input)),
+  
 
 });

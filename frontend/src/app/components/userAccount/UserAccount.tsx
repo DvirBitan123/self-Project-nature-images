@@ -13,7 +13,15 @@ export default function UserAccount() {
   const { data: userCategories, error: userCatError } = trpc.getUserCategories.useQuery(userToken!);
   const { data: userImages, error: imagesError } = trpc.getUserImages.useQuery(userToken!);
   const [imagesState, setImagesState] = useState<UserFuncsOutput[]>([]);
-  
+  const [uploadMessage, setUploadMessage] = useState<string>('');
+
+  trpc.onUpload.useSubscription(undefined, {
+    onData: (message) => {
+      console.log('pub sub data:', message);
+      setUploadMessage(message);
+    }
+  });
+
   useEffect(() => {
     if (userImages) setImagesState(userImages);
   }, [userImages]);
@@ -78,8 +86,11 @@ export default function UserAccount() {
 
     return (
       <div>
-        <h1 className='grid place-content-center text-4xl font-medium'>Your Collections</h1>
-        <br></br>
+        <div className={uploadMessage ? 'bg-gradient-to-r from-rose-500 from-10% via-purple-500 via-40% to-indigo-500 to-70%' : ''}>
+        <p className='text-lg font-medium text-stone-100 h-8'>{uploadMessage}</p>
+
+        </div>
+        <h1 className='grid place-content-center text-4xl font-medium pt-2 pb-8'>Your Collections</h1>
         <div className='flex justify-between mx-5'>
           <div>
             <p className='grid place-content-center text-2xl font-medium text-stone-700'>

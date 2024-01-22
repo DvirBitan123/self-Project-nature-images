@@ -41,11 +41,9 @@ export const addCategoryToUser = async (input: UserCategoryInput) => {
         VALUES (
             '${userId}',
              '${categoryId}'
-        )
-      `;
+        )`;
     const addResult = await DAL.userDetailsByQuery(addCategoryQuery);
-    if (addResult)
-      return 'Category added successfully'
+    if (addResult) return 'Category added successfully'
   }
   catch (error) {
     console.error(error);
