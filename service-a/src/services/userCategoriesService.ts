@@ -5,9 +5,7 @@ import { checkAndDecodeToken } from '../utils/jwtDecode';
 
 export const getUserCategories = async (token: string) => {
   try {
-    const res = checkAndDecodeToken(token);
-    
-    const userId = res;
+    const userId = checkAndDecodeToken(token);
     const userCategoriesQuery = `
         select c.name as category 
         from users_categories uc join categories c 

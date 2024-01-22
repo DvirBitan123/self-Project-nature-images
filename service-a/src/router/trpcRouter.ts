@@ -8,7 +8,6 @@ import * as UserImagesService from '../services/userImagesService';
 import { z } from 'zod';
 import {addImageZodSchema, ZodUserCategory, ZodUserImage} from "../ZodValidations/zodObjectsValidations";
 import { observable } from "@trpc/server/observable";
-import { emit } from "process";
 import { EventEmitter } from "stream";
 
 export const eventEmitter = new EventEmitter();
@@ -53,7 +52,7 @@ export const appRouter = router({
       }
     })
   }),
-  
+
   // USER CATEGORIES
   getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),
   addUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.addCategoryToUser(input)),

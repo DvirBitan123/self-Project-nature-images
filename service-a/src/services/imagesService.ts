@@ -1,6 +1,6 @@
 import * as DAL from '../DAL/imagesDAL';
 import { convertCatNameToId } from './categoriesService';
-import { convertEqNameToId } from './EquipmentService';
+import { convertEquipNameToId } from './EquipmentService';
 import { allImagesQuery } from '../sequelize/sqlQueries';
 import { ImageInterface } from '../types/types';
 import { eventEmitter } from '../router/trpcRouter';
@@ -64,7 +64,7 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
     }
     const categoryName = newImage.category;
     const categoryId = await convertCatNameToId(newImage.category);
-    const equipmentId = await convertEqNameToId(newImage.equipment);
+    const equipmentId = await convertEquipNameToId(newImage.equipment);
 
     newImage.category = categoryId;
     newImage.equipment = equipmentId;

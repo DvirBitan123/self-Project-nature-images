@@ -12,7 +12,7 @@ export const getAllEquipment = async () => {
   }
 }
 
-export const convertEqNameToId = async (equipmentName: string) => {
+export const convertEquipNameToId = async (equipmentName: string) => {
   try {
     const equipmentId = DAL.getEquipmentIdByName(equipmentName);
     if (equipmentId === undefined || equipmentId === null) {
