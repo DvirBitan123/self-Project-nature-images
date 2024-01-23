@@ -1,3 +1,4 @@
+
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import { connectWithSequelize } from "./sequelize/connectWithSequelize";
 import cors from 'cors';
@@ -56,10 +57,10 @@ connectWithSequelize();
 //   },
 // });
 
-// const wss = new ws.Server({ noServer: true });
+// const wss = new ws.Server(server);
 
 // // Mapping between categories and WebSocket connections
-// const categoryConnections = new Map<string, Set<ws>>();
+// export const categoryConnections = new Map<string, Set<ws>>();
 
 // wss.on('connection', (ws) => {
 //   ws.on('message', (message) => {
@@ -73,16 +74,14 @@ connectWithSequelize();
 //         handleUnsubscribe(ws, parsedMessage);
 //       }
 
-//       // You can handle other message types or business logic here
-
 //     } catch (error) {
 //       console.error('Error parsing message:', error);
 //     }
 //   });
 // });
 
-// function handleSubscribe(ws: ws, message: { userId: any; categories: any; }) {
-//   const { userId, categories } = message;
+// function handleSubscribe(ws: ws, message: { categories: string[]; }) {
+//   const { categories } = message;
 
 //   // Associate the WebSocket connection with the categories
 //   categories.forEach((category: string) => {
@@ -92,11 +91,11 @@ connectWithSequelize();
 //     categoryConnections.get(category).add(ws);
 //   });
 
-//   console.log(`User ${userId} subscribed to categories: ${categories}`);
+//   console.log(`User subscribed to categories: ${categories}`);
 // }
 
-// function handleUnsubscribe(ws: ws, message: { userId: any; categories: any; }) {
-//   const { userId, categories } = message;
+// function handleUnsubscribe(ws: ws, message: { categories: string[]; }) {
+//   const { categories } = message;
 
 //   // Disassociate the WebSocket connection from the categories
 //   categories.forEach((category: string) => {
@@ -104,24 +103,25 @@ connectWithSequelize();
 //       categoryConnections.get(category).delete(ws);
 
 //       // If no more connections in the category, remove it from the map
-//       if (categoryConnections.get(category).size === 0) {
-//         categoryConnections.delete(category);
-//       }
+      
+//       // if (categoryConnections.get(category).size === 0) {
+//       //   categoryConnections.delete(category);
+//       // }
 //     }
 //   });
 
-//   console.log(`User ${userId} unsubscribed from categories: ${categories}`);
+//   console.log(`User unsubscribed from categories: ${categories}`);
 // }
 
 // // Listen for events and broadcast them to subscribed connections
-// eventEmitter.on("upload", (category, data) => {
-//   if (categoryConnections.has(category)) {
-//     const connections = categoryConnections.get(category);
-//     connections.forEach((connection) => {
-//       connection.send(JSON.stringify({ type: 'message', data }));
-//     });
-//   }
-// });
+// // eventEmitter.on("upload", (category, data) => {
+// //   if (categoryConnections.has(category)) {
+// //     const connections = categoryConnections.get(category);
+// //     connections.forEach((connection) => {
+// //       connection.send(JSON.stringify({ type: 'message', data }));
+// //     });
+// //   }
+// // });
 
 // applyWSSHandler({
 //   wss,
@@ -134,11 +134,5 @@ connectWithSequelize();
 // server.listen(5000);
 // console.log('server is up on port 5000');
 // connectWithSequelize();
-
-
-
-
-
-
 
 

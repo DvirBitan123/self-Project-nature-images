@@ -1,4 +1,6 @@
 import * as DAL from '../DAL/userFavoritesDAL';
+// import { categoryConnections } from '../main';
+import { eventEmitter } from '../router/trpcRouter';
 import { UserCategoryInput, UserOutput } from '../types/types';
 import { checkAndDecodeToken } from '../utils/jwtDecode';
 
@@ -41,6 +43,16 @@ export const addCategoryToUser = async (input: UserCategoryInput) => {
              '${categoryId}'
         )`;
     const addResult = await DAL.userDetailsByQuery(addCategoryQuery);
+    // eventEmitter.on("upload", (category, data) => {
+    //   if (categoryConnections.has(category)) {
+    //     const connections = categoryConnections.get(category);
+    //     connections!.forEach((connection) => {
+    //       connection.send(JSON.stringify({ type: 'message', data }));
+    //     });
+    //   }
+    // });
+    eventEmitter.emit("upload", 'New images had been uploaded to Animals category! go and chek theme out!');
+
     if (addResult) return 'Category added successfully'
   }
   catch (error) {

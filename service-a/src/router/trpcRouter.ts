@@ -43,6 +43,13 @@ export const appRouter = router({
   addUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.addImageToUser(input)),
   deleteUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.deleteImageFromUser(input)),
   
+  // USER CATEGORIES
+  getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),
+  addUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.addCategoryToUser(input)),
+  deleteUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.deleteCategoryFromUser(input)),
+  
+
+  // UPLOAD IMAGE SUBSCRIPTION
   onUpload: t.procedure.subscription(() => {
     return observable<string>(emit => {
       eventEmitter.on("upload", emit.next)
@@ -51,12 +58,6 @@ export const appRouter = router({
         eventEmitter.off("upload", emit.next)
       }
     })
-  }),
-
-  // USER CATEGORIES
-  getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),
-  addUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.addCategoryToUser(input)),
-  deleteUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.deleteCategoryFromUser(input)),
+  })
   
-
 });

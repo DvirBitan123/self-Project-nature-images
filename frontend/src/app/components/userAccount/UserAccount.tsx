@@ -9,6 +9,7 @@ import { UserFuncsOutput } from '../../types/ImagesTypes';
 export default function UserAccount() {
   const navigate = useNavigate();
   const userToken = localStorage.getItem('images_token');
+  const userEmail = localStorage.getItem("user_email");  
   const { data: allCategories } = trpc.getAllCategories.useQuery();
   const { data: userCategories, error: userCatError } = trpc.getUserCategories.useQuery(userToken!);
   const { data: userImages, error: imagesError } = trpc.getUserImages.useQuery(userToken!);
@@ -86,11 +87,16 @@ export default function UserAccount() {
 
     return (
       <div>
-        <div className={uploadMessage ? 'bg-gradient-to-r from-rose-500 from-10% via-purple-500 via-40% to-indigo-500 to-70%' : ''}>
-        <p className='text-lg font-medium text-stone-100 h-8'>{uploadMessage}</p>
-
+        <div className="grid place-content-center ">
+          <a href={ROUTES.HOME}>
+            <div className={uploadMessage ? 'bg-gradient-to-r from-rose-500 to-purple-500 my-2 rounded-lg' : ''}>
+              <p className='text-lg font-medium text-stone-100 h-8 mx-5'>
+                {uploadMessage}
+              </p>
+            </div>
+          </a>
         </div>
-        <h1 className='grid place-content-center text-4xl font-medium pt-2 pb-8'>Your Collections</h1>
+        <h1 className='grid place-content-center text-4xl font-medium pt-2 pb-8'>Welcome {userEmail}</h1>
         <div className='flex justify-between mx-5'>
           <div>
             <p className='grid place-content-center text-2xl font-medium text-stone-700'>

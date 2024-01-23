@@ -4,6 +4,7 @@ import { convertEquipNameToId } from './EquipmentService';
 import { allImagesQuery } from '../sequelize/sqlQueries';
 import { ImageInterface } from '../types/types';
 import { eventEmitter } from '../router/trpcRouter';
+// import { categoryConnections } from '../main';
 
 export const getAllImages = async () => {
   try {
@@ -74,6 +75,14 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
       throw new Error('data not found');
     }
     const uploadMessage = `New Image had been uploaded to ${categoryName} category!`;
+    // eventEmitter.on("upload", (category, data) => {
+    //   if (categoryConnections.has(category)) {
+    //     const connections = categoryConnections.get(category);
+    //     connections.forEach((connection) => {
+    //       connection.send(JSON.stringify({ type: 'message', data }));
+    //     });
+    //   }
+    // });
     eventEmitter.emit("upload", uploadMessage);
     return newImgRes
 

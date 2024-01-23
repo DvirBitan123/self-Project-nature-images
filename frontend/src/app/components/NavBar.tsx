@@ -2,8 +2,6 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, UserCircleIcon, } from '@heroicons/react/24/outline';
 import ROUTES from '../router/routes';
-import { useAtom } from 'jotai';
-import { userEmailAtom } from '../Jotai atoms/Jotai_atoms';
 import classNames from '../utils/ClassNames';
 
 const navigation = [
@@ -13,7 +11,7 @@ const navigation = [
 ];
 
 export default function NavBar() {
-  const [userEmail, setUserEmail] = useAtom(userEmailAtom);
+  const userEmail = localStorage.getItem("user_email");  
 
   return (
     <Disclosure as="nav" className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
