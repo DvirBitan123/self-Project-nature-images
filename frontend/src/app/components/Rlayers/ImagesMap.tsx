@@ -7,10 +7,10 @@ import mapPin from "../../../assets/mapPin.svg";
 import { Feature } from 'ol';
 import { trpc2 } from '../../utils/ConnectTotRPC';
 import { FeatureParam } from '../../types/ImagesTypes';
+import { boundingExtent, getCenter } from 'ol/extent';
 
 
 export function MapTest() {
-  const [mashu, setMashu] = useState(0);
   const [featuresArr, setFeaturesArr] = React.useState<FeatureParam[]>([]);
 
   useEffect(() => {
@@ -38,13 +38,21 @@ export function MapTest() {
       }
     };
     getAllImages()
-  }, [])
-  console.log('featuresArr:', featuresArr);
+  }, []);
+
+  const extent = boundingExtent([
+    fromLonLat([-181, -80]),
+    fromLonLat([180, 83]),
+  ]);
 
   if (featuresArr)
     return (
       <div className='grid justify-items-center py-6'>
-        <RMap height={'450px'} className='w-8/12 shadow-2xl' initial={{ center: fromLonLat([34.965, 31.738]), zoom: 9 }}>
+        <RMap 
+          height={'450px'} 
+          className='w-8/12 shadow-2xl' 
+          extent={extent}
+          initial={{ center: fromLonLat([34.965, 31.738]), zoom: 9 }}>
           <ROSM />
           <RLayerVector zIndex={10}>
             <RStyle.RStyle>
