@@ -9,16 +9,15 @@ import { ImageInterface } from '../../types/ImagesTypes';
 import { ToastContainer } from 'react-toastify';
 
 
-
 export default function AllImages(): ReactNode {
   const [imgCategory] = useAtom(categoryAtom);
   const [openModal, setOpenModal] = useState(false);
   const [singleImage, setSingleImage] = useState<ImageInterface>();
   const userToken = localStorage.getItem('images_token');
-
+  
   const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
   const [usersImgIds, setUsersImgIds] = useState<string[] | undefined>([]);
-
+  
   useEffect(() => {
     const fetchUserImages = async () => {
       if (userToken !== '') {
@@ -76,7 +75,11 @@ export default function AllImages(): ReactNode {
           openModal={openModal}
           setOpenModal={setOpenModal}
         />
-        <ToastContainer position="bottom-left" theme='colored' />
+        <ToastContainer 
+          hideProgressBar 
+          position="bottom-left" 
+          theme='colored' 
+        />
       </>
     )
   }

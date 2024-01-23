@@ -38,4 +38,8 @@ export interface UserImgIdOutput {
   image_id: string
 };
 
+export interface UserCategoriesOutput {
+  category: string
+};
+
 

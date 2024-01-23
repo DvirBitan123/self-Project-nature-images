@@ -1,6 +1,4 @@
 import * as DAL from '../DAL/userFavoritesDAL';
-// import { categoryConnections } from '../main';
-import { eventEmitter } from '../router/trpcRouter';
 import { UserCategoryInput, UserOutput } from '../types/types';
 import { checkAndDecodeToken } from '../utils/jwtDecode';
 
@@ -13,12 +11,12 @@ export const getUserCategories = async (token: string) => {
         from users_categories uc join categories c 
           ON uc.category_id = c.id
             where user_id = '${userId}'`;
-    const userCategories = await DAL.userDetailsByQuery(userCategoriesQuery);
+    const userCategories = await DAL.returnUserCategories(userCategoriesQuery);
     if (userCategories === undefined || userCategories === null) {
       throw new Error('data not found');
     }
     const categoriesArr = userCategories.map((item) => {
-      return item.category
+      return item.category;
     })
     return categoriesArr
   }
@@ -32,8 +30,8 @@ export const getUserCategories = async (token: string) => {
 export const addCategoryToUser = async (input: UserCategoryInput) => {
   const { token, categoryId } = input;
   try {
-    const res = checkAndDecodeToken(token);
-    const userId = res;
+    const userId = checkAndDecodeToken(token);
+
     const addCategoryQuery = `
       insert into users_categories(
         user_id,
@@ -43,17 +41,8 @@ export const addCategoryToUser = async (input: UserCategoryInput) => {
              '${categoryId}'
         )`;
     const addResult = await DAL.userDetailsByQuery(addCategoryQuery);
-    // eventEmitter.on("upload", (category, data) => {
-    //   if (categoryConnections.has(category)) {
-    //     const connections = categoryConnections.get(category);
-    //     connections!.forEach((connection) => {
-    //       connection.send(JSON.stringify({ type: 'message', data }));
-    //     });
-    //   }
-    // });
-    eventEmitter.emit("upload", 'New images had been uploaded to Animals category! go and chek theme out!');
+    if (addResult) return 'Category added successfully';
 
-    if (addResult) return 'Category added successfully'
   }
   catch (error) {
     console.error(error);

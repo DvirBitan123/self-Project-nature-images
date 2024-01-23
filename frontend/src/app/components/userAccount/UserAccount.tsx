@@ -16,9 +16,8 @@ export default function UserAccount() {
   const [imagesState, setImagesState] = useState<UserFuncsOutput[]>([]);
   const [uploadMessage, setUploadMessage] = useState<string>('');
 
-  trpc.onUpload.useSubscription(undefined, {
+  trpc.onUpload.useSubscription(userCategories!, {
     onData: (message) => {
-      console.log('pub sub data:', message);
       setUploadMessage(message);
     }
   });

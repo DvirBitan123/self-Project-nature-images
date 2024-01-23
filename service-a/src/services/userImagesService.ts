@@ -58,9 +58,6 @@ export const addImageToUser = async (input: UserImageInput) => {
   try {
     const res = checkAndDecodeToken(token);
     const userId = res;
-    // const userImagesQuery = `
-    //     select image_id from users_images
-    //       where user_id = '${userId}' `;
 
     const addImageQuery = `
       insert into users_images(
@@ -87,7 +84,6 @@ export const addImageToUser = async (input: UserImageInput) => {
       
       return userImagesIds
     }
-      // return 'Image added successfully to the user'
   }
   catch (error) {
     console.error(error);

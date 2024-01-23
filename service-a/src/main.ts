@@ -1,10 +1,10 @@
-
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import { connectWithSequelize } from "./sequelize/connectWithSequelize";
 import cors from 'cors';
 import { appRouter } from "./router/trpcRouter";
 import {applyWSSHandler} from "@trpc/server/adapters/ws";
 import ws from "ws";
+
 
 type AppRouter = typeof appRouter;
 export default AppRouter;
