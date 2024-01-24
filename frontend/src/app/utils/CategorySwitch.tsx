@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Switch } from '@headlessui/react';
-import { trpc2 } from './ConnectTotRPC';
+import { trpc2 } from '../trpcConnetion/ConnectTotRPC';
 
 interface Props {
   startVal: boolean

@@ -1,7 +1,7 @@
 import { useForm, FieldValues } from 'react-hook-form';
 import { useMutation } from "@apollo/client";
 import { createUserMutaion } from "../../../UsersGraphQL/usersMutations";
-import { trpc2 } from '../../../utils/ConnectTotRPC';
+import { trpc2 } from '../../../trpcConnetion/ConnectTotRPC';
 import { useNavigate } from 'react-router-dom';
 import { EMAIL_VALIDATE, PASSWORD_VALIDATE } from '../../../utils/validations';
 import EmailInput from '../EmailInput';

@@ -5,7 +5,7 @@ import 'ol/ol.css';
 import { RMap, ROSM, RLayerVector, RFeature, ROverlay, RStyle, RPopup } from 'rlayers';
 import mapPin from "../../../assets/mapPin.svg";
 import { Feature } from 'ol';
-import { trpc2 } from '../../utils/ConnectTotRPC';
+import { trpc2 } from '../../trpcConnetion/ConnectTotRPC';
 import { FeatureParam } from '../../types/ImagesTypes';
 import { boundingExtent, getCenter } from 'ol/extent';
 

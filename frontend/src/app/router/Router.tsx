@@ -5,16 +5,19 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import MapPage from '../pages/MapPage';
 import UserPage from '../pages/userPage';
+import Layout from '../pages/Layout';
 
 const Router = () => {
   return (
     <Routes>
-      <Route index element={<HomePage />} />
-      <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
-      <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-      <Route path={ROUTES.MAP} element={<MapPage />} />
-      <Route path={ROUTES.USER} element={<UserPage />} />
-      {/* <Route path={ROUTES.DEFAULT} element={<NotFoundPage />} />  */}
+      <Route path='/' element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+        <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+        <Route path={ROUTES.MAP} element={<MapPage />} />
+        <Route path={ROUTES.USER} element={<UserPage />} />
+        {/* <Route path={ROUTES.DEFAULT} element={<NotFoundPage />} />  */}
+      </Route>
     </Routes>
   );
 };

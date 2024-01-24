@@ -1,10 +1,10 @@
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import classNames from "../../utils/ClassNames";
 import { categoryAtom } from "../../Jotai atoms/Jotai_atoms";
 
 
 export default function CategoriesFilterButtons() {
-  const [imgCategory, setImgCategory] = useAtom(categoryAtom);
+  const setImgCategory = useSetAtom(categoryAtom);
 
   const navigation = [
     { name: 'All' },
@@ -18,8 +18,8 @@ export default function CategoriesFilterButtons() {
 
   return (
     <>
-      <div className="hidden sm:ml-6 sm:block">
-        <div className="flex space-x-4">
+      <div className=" sm:ml-6 sm:block">
+        <div className=" flex justify-start flex-wrap space-x-4">
           {navigation.map((item) => (
             <div
               key={item.name}

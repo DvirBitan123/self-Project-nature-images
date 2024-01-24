@@ -8,13 +8,13 @@ import classNames from '../../../utils/ClassNames';
 import { authMutation } from '../../../UsersGraphQL/authMutation';
 import { useState } from 'react';
 import ROUTES from '../../../router/routes';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { userEmailAtom } from '../../../Jotai atoms/Jotai_atoms';
 
 
 export default function Login() {
   const [wrongMessage, setWrongMessage] = useState('');
-  const [userEmail, setUserEmail] = useAtom(userEmailAtom); 
+  const setUserEmail = useSetAtom(userEmailAtom); 
   const {
     register,
     watch,
@@ -37,7 +37,7 @@ export default function Login() {
             localStorage.setItem('user_token', jwtToken);
             localStorage.setItem('user_email', inputEmail);
             setUserEmail(inputEmail);
-            navigate(ROUTES.USER);
+            navigate(ROUTES.HOME);
           }
           else setWrongMessage('⚠ Wrong Email or Password');
         }

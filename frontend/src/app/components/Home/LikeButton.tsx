@@ -1,4 +1,4 @@
-import { trpc2 } from '../../utils/ConnectTotRPC';
+import { trpc2 } from '../../trpcConnetion/ConnectTotRPC';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { toast } from 'react-toastify';

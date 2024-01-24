@@ -1,7 +1,7 @@
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { categoryAtom } from '../../Jotai atoms/Jotai_atoms';
 import CategoriesFilterButtons from './CategoriesFilterButtons';
-import { trpc, trpc2 } from '../../utils/ConnectTotRPC';
+import { trpc, trpc2 } from '../../trpcConnetion/ConnectTotRPC';
 import { LikeButton } from './LikeButton';
 import { ReactNode, useEffect, useState } from 'react';
 import SingleImageModal from '../ImageModal/SingleImageModal';
@@ -10,7 +10,7 @@ import { ToastContainer } from 'react-toastify';
 
 
 export default function AllImages(): ReactNode {
-  const [imgCategory] = useAtom(categoryAtom);
+  const imgCategory = useAtomValue(categoryAtom);
   const [openModal, setOpenModal] = useState(false);
   const [singleImage, setSingleImage] = useState<ImageInterface>();
   const userToken = localStorage.getItem('user_token');

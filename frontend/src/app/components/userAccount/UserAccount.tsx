@@ -1,17 +1,17 @@
-import { trpc, trpc2 } from '../../utils/ConnectTotRPC';
+import { trpc, trpc2 } from '../../trpcConnetion/ConnectTotRPC';
 import CategoriesSwitch from '../../utils/CategorySwitch';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../router/routes';
 import { useEffect, useState } from 'react';
 import { BackspaceIcon } from '@heroicons/react/24/solid';
 import { UserFuncsOutput } from '../../types/ImagesTypes';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { userEmailAtom } from '../../Jotai atoms/Jotai_atoms';
 
 export default function UserAccount() {
   const navigate = useNavigate();
   const userToken = localStorage.getItem('user_token');
-  const [userEmail, setUserEmail] = useAtom(userEmailAtom);
+  const userEmail = useAtomValue(userEmailAtom);
 
   const { data: allCategories } = trpc.getAllCategories.useQuery();
   const { data: userCategories, error: userCatError } = trpc.getUserCategories.useQuery(userToken!);

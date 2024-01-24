@@ -3,17 +3,17 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, UserCircleIcon, } from '@heroicons/react/24/outline';
 import ROUTES from '../router/routes';
 import classNames from '../utils/ClassNames';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { userEmailAtom } from '../Jotai atoms/Jotai_atoms';
 
 const navigation = [
   { name: 'Images', href: ROUTES.HOME, current: false },
-  { name: 'map', href: ROUTES.MAP, current: false },
+  { name: 'Map', href: ROUTES.MAP, current: false },
   { name: 'My Page', href: ROUTES.USER, current: false }
 ];
 
 export default function NavBar() {
-  const [userEmail, setUserEmail] = useAtom(userEmailAtom);    
+  const userEmail = useAtomValue(userEmailAtom);    
   return (
     <Disclosure as="nav" className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
       {({ open }) => (
@@ -91,7 +91,7 @@ export default function NavBar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mx-8 mt-2 py-1 max-w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mx-8 mt-2 py-1 min-w-36 max-w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
