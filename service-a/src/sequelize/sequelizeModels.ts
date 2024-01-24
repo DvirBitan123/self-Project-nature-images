@@ -95,54 +95,6 @@ const Users_ids = sequelize.define('users_ids', {
   updatedAt: false
 });
 
-// const UsersCategories = sequelize.define('users_categories', {
-//   user_id: {
-//     type: DataTypes.UUID,
-//     primaryKey: true,
-//     allowNull: false,
-//     references: {
-//       model: Users_ids,
-//       key: 'user_id'
-//     }
-//   },
-//   category_id: {
-//     type: DataTypes.UUID,
-//     primaryKey: true,
-//     allowNull: false,
-//     references: {
-//       model: Categories,
-//       key: 'id'
-//     }
-//   }
-// }, {
-//   createdAt: false,
-//   updatedAt: false
-// });
-
-// const UsersImages = sequelize.define('users_images', {
-//   user_id: {
-//     type: DataTypes.UUID,
-//     primaryKey: true,
-//     allowNull: false,
-//     references: {
-//       model: Users_ids,
-//       key: 'user_id'
-//     }
-//   },
-//   image_id: {
-//     type: DataTypes.UUID,
-//     primaryKey: true,
-//     allowNull: false,
-//     references: {
-//       model: Images,
-//       key: 'id'
-//     }
-//   }
-// }, {
-//   createdAt: false,
-//   updatedAt: false
-// });
-
 Users_ids.belongsToMany(Categories, { through: 'users_categories' });
 Categories.belongsToMany(Users_ids, { through: 'users_categories' });
 

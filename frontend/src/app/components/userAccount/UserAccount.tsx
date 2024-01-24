@@ -41,7 +41,7 @@ export default function UserAccount() {
       token: userToken,
       imageId: imageId
     };
-    await trpc2.deleteUserImage.query(imageInput);
+    await trpc2.deleteUserImage.mutate(imageInput);
     const updatedImages = imagesState.filter((image) => image.image_id !== imageId);
     setImagesState(updatedImages);
   }

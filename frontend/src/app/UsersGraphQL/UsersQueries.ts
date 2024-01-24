@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const allUsersQuery = gql`
   query MyQuery {
@@ -11,15 +11,5 @@ export const allUsersQuery = gql`
     }
 }
   `;
-
-// export const userByEmailQuery = gql`
-//   query Query {
-//       userByEmail(email: ) {
-//         id
-//         name
-//         password
-//       }
-//     }
-// `
 
 

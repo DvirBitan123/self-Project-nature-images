@@ -14,9 +14,6 @@ export interface ImageInterface {
   lat: number;
 }
 
-export interface ImageChecked extends ImageInterface {
-  checked: boolean
-}
 
 export interface FeatureParam {
   feature: Feature<Point>;

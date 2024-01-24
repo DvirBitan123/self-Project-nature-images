@@ -1,7 +1,7 @@
 import * as DAL from '../DAL/imagesDAL';
 import { convertCatNameToId } from './categoriesService';
 import { convertEquipNameToId } from './EquipmentService';
-import { allImagesQuery } from '../sequelize/sqlQueries';
+import { allImagesQuery } from '../utils/sqlQueries';
 import { ImageInterface } from '../types/types';
 import { eventEmitter } from '../Subscription/uploadSubscription';
 
@@ -14,7 +14,7 @@ export const getAllImages = async () => {
     return allImages
 
   } catch (error) {
-    console.error(error);
+    throw error
   }
 }
 
@@ -33,7 +33,7 @@ export const getImagesByCategory = async (category: string) => {
     return categoryImages
 
   } catch (error) {
-    console.error(error);
+    throw error
   }
 }
 
@@ -50,7 +50,7 @@ export const getImageById = async (ID: string) => {
     return imageById
 
   } catch (error) {
-    console.error(error);
+    throw error
   }
 }
 
@@ -60,7 +60,7 @@ export const deleteImageById = async (imgId: string) => {
     return delRes
 
   } catch (error) {
-    throw new Error(`error in deletin an image: ${error}`);
+    throw error
   }
 }
 
@@ -108,7 +108,7 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
     return newImgRes
 
   } catch (error) {
-    throw new Error(`error in adding new image: ${error}`);
+    throw error
   }
 }
 

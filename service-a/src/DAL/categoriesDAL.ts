@@ -21,9 +21,16 @@ export const getCategoryIdByName = async (categoryName: string) => {
 }
 
 
-
-
 export const craeteNewCategory = async (categoryName: string) => {
     const newCategory = await Categories.create({name: categoryName});
     return newCategory
+}
+
+export const deleteCategory = async (categoryName: string) => {
+    const deleteRes = await Categories.destroy({
+      where: {
+        name: categoryName
+      }
+    });
+    return deleteRes
 }

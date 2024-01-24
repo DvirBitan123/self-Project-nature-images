@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import ROUTES from './routes';
+import Layout from '../pages/Layout';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import MapPage from '../pages/MapPage';
-import UserPage from '../pages/UserPage';
-import Layout from '../pages/Layout';
+import UserPage from '../pages/userPage'
 import NotFoundPage from '../pages/NotFoundPage';
 
 const Router = () => {

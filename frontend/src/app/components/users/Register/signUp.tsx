@@ -29,7 +29,7 @@ export default function SigUp() {
         onCompleted: (data) => {
           const insertUser = async () => {
             const { createUser: { user: { id } } } = data;
-            await trpc2.createNewUser.query(id);
+            await trpc2.createNewUser.mutate(id);
             navigate(ROUTES.LOGIN);        
           };
           insertUser();

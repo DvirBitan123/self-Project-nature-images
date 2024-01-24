@@ -8,7 +8,7 @@ export const getAllEquipment = async () => {
     }
     return allEquipment
   } catch (error) {
-    throw new Error(`fetch all equipment error: ${error}`);
+    throw error
   }
 }
 
@@ -21,7 +21,6 @@ export const convertEquipNameToId = async (equipmentName: string) => {
     return equipmentId
 
   } catch (error) {
-    throw new Error(`convert category namwe to ID error: ${error}`);
+    throw error
   }
 }
-/// add convert name to id!!

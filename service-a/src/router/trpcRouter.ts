@@ -15,31 +15,31 @@ export const appRouter = router({
   getAllImages: publicProcedure.query(ImagesService.getAllImages),
   getImagesByCategory: publicProcedure.input(z.string()).query(({ input }) => ImagesService.getImagesByCategory(input)),
   getImageById: publicProcedure.input(z.string().uuid()).query(({ input }) => ImagesService.getImageById(input)),
-  addNewImage: publicProcedure.input(addImageZodSchema).query(({ input }) => ImagesService.addNewImage(input)),
-  deleteImageById: publicProcedure.input(z.string().uuid()).query(({ input }) => ImagesService.deleteImageById(input)),
+  addNewImage: publicProcedure.input(addImageZodSchema).mutation(({ input }) => ImagesService.addNewImage(input)),
+  deleteImageById: publicProcedure.input(z.string().uuid()).mutation(({ input }) => ImagesService.deleteImageById(input)),
 
   // CATEGORIES
   getAllCategories: publicProcedure.query(CategoriesService.getAllCategories),
-  addNewCategory: publicProcedure
-    .input(z.string()).query(({ input }) => CategoriesService.addNewCategory(input)),
-
+  addNewCategory: publicProcedure.input(z.string()).mutation(({ input }) => CategoriesService.addNewCategory(input)),
+  deleteCategory: publicProcedure.input(z.string()).mutation(({input}) => CategoriesService.deleteCategory(input)),
+  
   // EQUIPMENT
   getAllEquipment: publicProcedure.query(EquipmentService.getAllEquipment),
 
   //USER
   getAllUsers: publicProcedure.query(UsersService.getAllUsers),
-  createNewUser: publicProcedure.input(z.string().uuid()).query(({ input }) => UsersService.createNewUser(input)),
+  createNewUser: publicProcedure.input(z.string().uuid()).mutation(({ input }) => UsersService.createNewUser(input)),
 
   // USER IMAGES
   getUserImages: publicProcedure.input(z.string()).query(({ input }) => UserImagesService.getUserImages(input)),
   getUserImagesIds: publicProcedure.input(z.string()).query(({ input }) => UserImagesService.getUserImgIds(input)),
-  addUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.addImageToUser(input)),
-  deleteUserImage: publicProcedure.input(ZodUserImage).query(({ input }) => UserImagesService.deleteImageFromUser(input)),
+  addUserImage: publicProcedure.input(ZodUserImage).mutation(({ input }) => UserImagesService.addImageToUser(input)),
+  deleteUserImage: publicProcedure.input(ZodUserImage).mutation(({ input }) => UserImagesService.deleteImageFromUser(input)),
   
   // USER CATEGORIES
   getUserCategories: publicProcedure.input(z.string()).query(({ input }) => UserCategoriesService.getUserCategories(input)),
-  addUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.addCategoryToUser(input)),
-  deleteUserCategory: publicProcedure.input(ZodUserCategory).query(({ input }) => UserCategoriesService.deleteCategoryFromUser(input)),
+  addUserCategory: publicProcedure.input(ZodUserCategory).mutation(({ input }) => UserCategoriesService.addCategoryToUser(input)),
+  deleteUserCategory: publicProcedure.input(ZodUserCategory).mutation(({ input }) => UserCategoriesService.deleteCategoryFromUser(input)),
   
 
   // UPLOAD IMAGE SUBSCRIPTION

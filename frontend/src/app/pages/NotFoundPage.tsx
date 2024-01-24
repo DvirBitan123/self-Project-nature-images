@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../router/routes";
-import ArrowLongRightIcon from "@heroicons/react/24/solid/ArrowLongRightIcon";
 
 
 export default function NotFoundPage() {

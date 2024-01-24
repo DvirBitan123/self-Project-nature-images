@@ -31,7 +31,6 @@ export const addCategoryToUser = async (input: UserCategoryInput) => {
   const { token, categoryId } = input;
   try {
     const userId = checkAndDecodeToken(token);
-
     const addCategoryQuery = `
       insert into users_categories(
         user_id,
@@ -48,19 +47,18 @@ export const addCategoryToUser = async (input: UserCategoryInput) => {
     console.error(error);
     throw error
   }
-}
+};
 
 export const deleteCategoryFromUser = async (input: UserCategoryInput) => {
   const { token, categoryId } = input;
   try {
-    const res = checkAndDecodeToken(token);
-    const userId = res;
+    const userId = checkAndDecodeToken(token);
     const deleteCategoryQuery = `
         delete from users_categories 
           where user_id = '${userId}' and category_id = '${categoryId}';    
       `;
     const deleteResult = await DAL.userDetailsByQuery(deleteCategoryQuery);
-    return 'category deleted from user successfully';
+    if (deleteResult) return 'category deleted from user successfully';
   }
   catch (error) {
     console.error(error);

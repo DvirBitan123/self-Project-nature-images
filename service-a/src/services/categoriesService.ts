@@ -8,9 +8,9 @@ export const getAllCategories = async () => {
     }
     return allCategories
   } catch (error) {
-    throw new Error(`fetch all categories error: ${error}`);
+    throw error
   }
-}
+};
 
 export const addNewCategory = async (newCategory: string) => {
   try {
@@ -21,7 +21,17 @@ export const addNewCategory = async (newCategory: string) => {
     return newCatResult
 
   } catch (error) {
-    throw new Error(`an error occurred while adding new category: ${error}`);
+    throw error
+  }
+};
+
+export const deleteCategory = async (categoryName: string) => {
+  try {
+    const delRes = await DAL.deleteCategory(categoryName)
+    return delRes
+
+  } catch (error) {
+    throw error
   }
 }
 
@@ -34,8 +44,8 @@ export const convertCatNameToId = async (categoryName: string) => {
     return categoryId
 
   } catch (error) {
-    throw new Error(`convert category namwe to ID error: ${error}`);
+    throw error
   }
-}
+};
 
 

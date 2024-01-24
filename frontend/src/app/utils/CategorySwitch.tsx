@@ -16,10 +16,10 @@ export default function CategoriesSwitch(props: Props) {
       categoryId: props.categoryId
     };
     if (!enabled) {
-      await trpc2.addUserCategory.query(categoryInput)
+      await trpc2.addUserCategory.mutate(categoryInput)
     }
     else {
-      await trpc2.deleteUserCategory.query(categoryInput)
+      await trpc2.deleteUserCategory.mutate(categoryInput)
     }
   }
 

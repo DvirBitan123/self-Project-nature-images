@@ -1,8 +1,7 @@
 import { Users_ids } from "../sequelize/sequelizeModels";
 
-export const getAllUsers =async () => {
+export const getAllUsers = async () => {
   const allUsers = await Users_ids.findAll({raw: true});
-  console.log('allUsers:', allUsers);
   return allUsers 
 }
 

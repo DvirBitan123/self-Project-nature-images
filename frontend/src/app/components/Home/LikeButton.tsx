@@ -21,11 +21,11 @@ export function LikeButton(props: AddProps) {
         imageId: imageId
       };
       if (checked === false) {
-        const userArr = await trpc2.addUserImage.query(imageInput);
+        const userArr = await trpc2.addUserImage.mutate(imageInput);
         setUserIds(userArr);
       }
       else if (checked === true) {
-        const userArr = await trpc2.deleteUserImage.query(imageInput);
+        const userArr = await trpc2.deleteUserImage.mutate(imageInput);
         setUserIds(userArr);
       }
     }
