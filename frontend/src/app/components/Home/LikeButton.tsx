@@ -5,28 +5,28 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface AddProps {
-  token: string
   imageId: string
   checked: boolean
   setUserIds: React.Dispatch<React.SetStateAction<string[] | undefined>>
+  token: string | null
 };
 
 export function LikeButton(props: AddProps) {
-  const checked = props.checked;
+  const { imageId, checked, setUserIds, token } = props;
 
   const handleUserImage = async () => {
-    const imageInput = {
-      token: props.token,
-      imageId: props.imageId
-    };
-    if (props.token !== '') {      
-      if (props.checked === false) {
+    if (token !== null) {
+      const imageInput = {
+        token: token,
+        imageId: imageId
+      };
+      if (checked === false) {
         const userArr = await trpc2.addUserImage.query(imageInput);
-        props.setUserIds(userArr);
+        setUserIds(userArr);
       }
-      else if (props.checked === true) {
+      else if (checked === true) {
         const userArr = await trpc2.deleteUserImage.query(imageInput);
-        props.setUserIds(userArr);
+        setUserIds(userArr);
       }
     }
     else {
@@ -42,5 +42,4 @@ export function LikeButton(props: AddProps) {
       </button>
     </>
   )
-
 }

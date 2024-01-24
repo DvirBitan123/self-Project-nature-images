@@ -13,14 +13,14 @@ export default function AllImages(): ReactNode {
   const [imgCategory] = useAtom(categoryAtom);
   const [openModal, setOpenModal] = useState(false);
   const [singleImage, setSingleImage] = useState<ImageInterface>();
-  const userToken = localStorage.getItem('images_token');
+  const userToken = localStorage.getItem('user_token');
   
   const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
   const [usersImgIds, setUsersImgIds] = useState<string[] | undefined>([]);
   
   useEffect(() => {
     const fetchUserImages = async () => {
-      if (userToken !== '') {
+      if (userToken) {
         const data = await trpc2.getUserImagesIds.query(userToken!);
         setUsersImgIds(data);
       }
@@ -52,7 +52,7 @@ export default function AllImages(): ReactNode {
                 >
                   <LikeButton
                     key={image.alt}
-                    token={userToken!}
+                    token={userToken}
                     imageId={image.id}
                     checked={image.checked}
                     setUserIds={setUsersImgIds}
