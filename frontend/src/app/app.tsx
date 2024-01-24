@@ -2,7 +2,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createWSClient, httpBatchLink, wsLink, splitLink } from '@trpc/client';
 import { useState } from 'react';
 import { trpc } from './trpcConnetion/ConnectTotRPC';
-import NavBar from './components/NavBar';
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Router from './router/Router';
 
@@ -39,7 +38,6 @@ export function App() {
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <ApolloProvider client={client}>
         <QueryClientProvider client={queryClient}>
-          {/* <NavBar /> */}
           <Router />
         </QueryClientProvider>
       </ApolloProvider>

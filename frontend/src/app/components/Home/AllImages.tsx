@@ -58,7 +58,7 @@ export default function AllImages(): ReactNode {
                     setUserIds={setUsersImgIds}
                   />
                   <img
-                    className="rounded-3xl p-4 w-full h-auto cursor-pointer "
+                    className="rounded-3xl p-4 w-full h-auto cursor-pointer"
                     key={image.id} src={image.url} alt={image.alt}
                     onClick={() => {
                       setOpenModal(true);

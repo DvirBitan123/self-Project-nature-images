@@ -4,8 +4,9 @@ import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import MapPage from '../pages/MapPage';
-import UserPage from '../pages/userPage';
+import UserPage from '../pages/UserPage';
 import Layout from '../pages/Layout';
+import NotFoundPage from '../pages/NotFoundPage';
 
 const Router = () => {
   return (
@@ -16,7 +17,7 @@ const Router = () => {
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.MAP} element={<MapPage />} />
         <Route path={ROUTES.USER} element={<UserPage />} />
-        {/* <Route path={ROUTES.DEFAULT} element={<NotFoundPage />} />  */}
+        <Route path={ROUTES.DEFAULT} element={<NotFoundPage />} /> 
       </Route>
     </Routes>
   );

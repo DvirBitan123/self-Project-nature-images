@@ -30,7 +30,7 @@ export default function UserAccount() {
   }, [userImages]);
 
   useEffect(() => {
-    if (userCatError || userImagesError) {
+    if (userCatError || userImagesError) {      
       localStorage.clear();
       navigate(ROUTES.LOGIN);
     }
