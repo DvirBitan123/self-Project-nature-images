@@ -8,11 +8,11 @@ import SingleImageModal from '../ImageModal/SingleImageModal';
 import { ImageInterface } from '../../types/ImagesTypes';
 import { ToastContainer } from 'react-toastify';
 
-
 export default function AllImages(): ReactNode {
   const imgCategory = useAtomValue(categoryAtom);
   const [openModal, setOpenModal] = useState(false);
   const [singleImage, setSingleImage] = useState<ImageInterface>();
+  const [tokenTimeout, setTokenTimeout] = useState<boolean>(false);
   const userToken = localStorage.getItem('user_token');
   
   const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
@@ -20,9 +20,14 @@ export default function AllImages(): ReactNode {
   
   useEffect(() => {
     const fetchUserImages = async () => {
-      if (userToken) {
-        const data = await trpc2.getUserImagesIds.query(userToken!);
-        setUsersImgIds(data);
+      try {
+        if (userToken) {
+          const data = await trpc2.getUserImagesIds.query(userToken!);          
+          setUsersImgIds(data);
+        }
+      } 
+      catch(error) {
+        setTokenTimeout(true)
       }
     };
     fetchUserImages();
@@ -40,9 +45,7 @@ export default function AllImages(): ReactNode {
     return (
       <>
         <div className='grid justify-items-center'>
-          <br></br>
           <CategoriesFilterButtons />
-          <br></br>
           <div className='grid justify-center'>
             <div className='flex justify-start flex-wrap max-w-6xl'>
               {imagesArr.map((image) => {
@@ -57,6 +60,7 @@ export default function AllImages(): ReactNode {
                       imageId={image.id}
                       checked={image.checked}
                       setUserIds={setUsersImgIds}
+                      tokenTimeout={tokenTimeout}
                     />
                     <img
                       className="rounded-3xl p-4 w-full h-auto cursor-pointer"

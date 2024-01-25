@@ -15,7 +15,7 @@ export default function CategoriesFilterButtons() {
 
     return (
       <>
-        <div className=" sm:ml-6 sm:block">
+        <div className=" sm:ml-6 sm:block my-10">
           <div className=" flex justify-start flex-wrap space-x-4">
             {navigation.map((item) => (
               <div

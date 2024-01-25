@@ -9,28 +9,31 @@ interface AddProps {
   checked: boolean
   setUserIds: React.Dispatch<React.SetStateAction<string[] | undefined>>
   token: string | null
+  tokenTimeout: boolean
 };
 
 export function LikeButton(props: AddProps) {
-  const { imageId, checked, setUserIds, token } = props;
+  const { imageId, checked, setUserIds, token, tokenTimeout } = props;
 
   const handleUserImage = async () => {
-    if (token !== null) {
+    if (token !== null && tokenTimeout !== true) {
       const imageInput = {
         token: token,
         imageId: imageId
       };
-      if (checked === false) {
+      if (!checked) {
         const userArr = await trpc2.addUserImage.mutate(imageInput);
         setUserIds(userArr);
       }
-      else if (checked === true) {
+      else {
         const userArr = await trpc2.deleteUserImage.mutate(imageInput);
         setUserIds(userArr);
       }
     }
+
     else {
-      toast.warn("You have to login first!");
+      if (tokenTimeout !== false) toast.info("It's been a while since you logged in, please login again");
+      else toast.warn("You have to login first!");
     }
   }
 

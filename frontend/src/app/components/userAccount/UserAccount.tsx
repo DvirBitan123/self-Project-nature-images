@@ -75,7 +75,7 @@ export default function UserAccount() {
                         await deleteImageFunc(userToken!, item.image_id!);
                       }}
                     >
-                      {<BackspaceIcon className='w-8 h-8 ease-out duration-150 hover:text-stone-300' />}
+                      {<BackspaceIcon className='w-8 h-8 ease-out duration-150 hover:text-stone-200 hover:w-9 hover:h-9' />}
                     </button>
                     <img
                       className="rounded-3xl max-w-full h-auto"
