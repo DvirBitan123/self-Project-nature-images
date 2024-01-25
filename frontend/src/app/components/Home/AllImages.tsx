@@ -1,5 +1,5 @@
-import { useAtomValue } from 'jotai';
-import { categoryAtom } from '../../Jotai atoms/Jotai_atoms';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { categoryAtom, userEmailAtom } from '../../Jotai atoms/Jotai_atoms';
 import CategoriesFilterButtons from './CategoriesFilterButtons';
 import { trpc, trpc2 } from '../../trpcConnetion/ConnectTotRPC';
 import { LikeButton } from './LikeButton';
@@ -13,6 +13,8 @@ export default function AllImages(): ReactNode {
   const [openModal, setOpenModal] = useState(false);
   const [singleImage, setSingleImage] = useState<ImageInterface>();
   const [tokenTimeout, setTokenTimeout] = useState<boolean>(false);
+  const setUserEmail = useSetAtom(userEmailAtom);
+
   const userToken = localStorage.getItem('user_token');
   
   const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
@@ -27,7 +29,9 @@ export default function AllImages(): ReactNode {
         }
       } 
       catch(error) {
-        setTokenTimeout(true)
+        setTokenTimeout(true);
+        localStorage.setItem('user_email', '');
+        setUserEmail('');
       }
     };
     fetchUserImages();

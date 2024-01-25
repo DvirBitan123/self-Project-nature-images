@@ -21,7 +21,7 @@ export default function Login() {
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
   const navigate = useNavigate();
-  const [authUser, { error: mutationError }] = useMutation(authMutation);
+  const [authUser] = useMutation(authMutation);
   const inputEmail = watch('email');
   const inputPassword = watch('password');
 
