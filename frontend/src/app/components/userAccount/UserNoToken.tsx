@@ -7,7 +7,7 @@ export default function UserNoToken() {
       <div className="grid place-items-center w-full h-full">
         <h1 className="text-4xl font-medium mt-5 mb-8">You have to login first to enter this page</h1>
         <a
-          className="flex font-medium text-white bg-gradient-to-r from-pink-500 to-purple-500 ease-out duration-200 hover:from-fuchsia-500 hover:to-cyan-500 px-4 py-2 rounded-lg"
+          className="flex font-medium text-white bg-gradient-to-r from-pink-500 to-purple-500 ease-out duration-200 hover:from-fuchsia-500 hover:to-cyan-500 px-4 py-2 rounded-lg hover:py-4 hover:px-6"
           href={ROUTES.LOGIN}>
 
           Login <ArrowLongRightIcon className="w-8 h-7 ml-2" />

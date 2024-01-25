@@ -14,12 +14,12 @@ import { userEmailAtom } from '../../../Jotai atoms/Jotai_atoms';
 
 export default function Login() {
   const [wrongMessage, setWrongMessage] = useState('');
-  const setUserEmail = useSetAtom(userEmailAtom); 
+  const setUserEmail = useSetAtom(userEmailAtom);
   const {
     register,
     watch,
     formState: { errors, isValid },
-  } = useForm({ mode: "onChange"});
+  } = useForm({ mode: "onChange" });
   const navigate = useNavigate();
   const [authUser, { error: mutationError }] = useMutation(authMutation);
   const inputEmail = watch('email');
@@ -33,7 +33,6 @@ export default function Login() {
         onCompleted: (data) => {
           const { authenticate: { jwtToken } } = data;
           if (jwtToken) {
-            console.log(jwtToken);
             localStorage.setItem('user_token', jwtToken);
             localStorage.setItem('user_email', inputEmail);
             setUserEmail(inputEmail);
@@ -52,11 +51,11 @@ export default function Login() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            className="mx-auto h-auto w-48"
+            src="http://localhost:8181/public/Logo.png"
             alt="Nature Lens Icon"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign In to your account
           </h2>
         </div>

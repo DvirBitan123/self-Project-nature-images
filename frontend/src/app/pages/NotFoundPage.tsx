@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../router/routes";
+import ArrowLongRightIcon from "@heroicons/react/24/solid/ArrowLongRightIcon";
 
 
 export default function NotFoundPage() {
@@ -17,11 +18,12 @@ export default function NotFoundPage() {
       </p>
       <img
         className="max-w-sm max-h-sm shadow-2xl my-5 mx-20"
+        // src="https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569__340.jpg"
         src="http://localhost:8181/public/IMG_8163.jpg"
         alt="Page not found"
       />
       <button 
-        className="px-4 py-2 rounded-lg text-xl font-medium text-white bg-gradient-to-r from-pink-500 to-purple-500 ease-out duration-200 hover:from-fuchsia-500 hover:to-cyan-500"
+        className="px-4 py-2 rounded-lg text-xl font-medium text-white bg-gradient-to-r from-pink-500 to-purple-500 ease-out duration-200 hover:from-fuchsia-500 hover:to-cyan-500 hover:p-6"
         onClick={goHome}
       >
         Back Home 

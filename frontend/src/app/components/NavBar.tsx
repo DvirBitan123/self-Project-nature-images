@@ -31,14 +31,14 @@ export default function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="h-8 w-auto"
-                    src="www.replace this image ASAP"
-                    alt="Your Company"
+                    className=" max-w-16"
+                    src="http://localhost:8181/public/Logo.png"
+                    alt="site logo"
                   />
                 </div>
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (

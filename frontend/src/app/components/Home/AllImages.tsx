@@ -43,31 +43,33 @@ export default function AllImages(): ReactNode {
           <br></br>
           <CategoriesFilterButtons />
           <br></br>
-          <div className='flex justify-start flex-wrap'>
-            {imagesArr.map((image) => {
-              return (
-                <div
-                  key={image.url}
-                  className='relative max-w-sm max-h-sm ease-in-out duration-300 hover:origin-bottom hover:scale-105'
-                >
-                  <LikeButton
-                    key={image.alt}
-                    token={userToken}
-                    imageId={image.id}
-                    checked={image.checked}
-                    setUserIds={setUsersImgIds}
-                  />
-                  <img
-                    className="rounded-3xl p-4 w-full h-auto cursor-pointer"
-                    key={image.id} src={image.url} alt={image.alt}
-                    onClick={() => {
-                      setOpenModal(true);
-                      setSingleImage(image)
-                    }}
-                  />
-                </div>
-              )
-            })}
+          <div className='grid justify-center'>
+            <div className='flex justify-start flex-wrap max-w-6xl'>
+              {imagesArr.map((image) => {
+                return (
+                  <div
+                    key={image.url}
+                    className='relative max-w-sm max-h-sm ease-in-out duration-300 hover:origin-bottom hover:scale-105'
+                  >
+                    <LikeButton
+                      key={image.alt}
+                      token={userToken}
+                      imageId={image.id}
+                      checked={image.checked}
+                      setUserIds={setUsersImgIds}
+                    />
+                    <img
+                      className="rounded-3xl p-4 w-full h-auto cursor-pointer"
+                      key={image.id} src={image.url} alt={image.alt}
+                      onClick={() => {
+                        setOpenModal(true);
+                        setSingleImage(image)
+                      }}
+                    />
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
         <SingleImageModal

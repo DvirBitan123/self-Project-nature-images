@@ -30,12 +30,12 @@ export default function SigUp() {
           const insertUser = async () => {
             const { createUser: { user: { id } } } = data;
             await trpc2.createNewUser.mutate(id);
-            navigate(ROUTES.LOGIN);        
+            navigate(ROUTES.LOGIN);
           };
           insertUser();
         }
       });
-      
+
     } catch {
       throw new Error(`mutationError: ${mutationError}`);
     }
@@ -46,11 +46,11 @@ export default function SigUp() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            className="mx-auto h-auto w-48"
+            src="http://localhost:8181/public/Logo.png"
             alt="Nature Lens Icon"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Create a New Account
           </h2>
         </div>
