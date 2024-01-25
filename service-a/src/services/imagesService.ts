@@ -83,7 +83,7 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
     if (newImgRes === undefined || newImgRes === null) {
       throw new Error('data not found');
     };
-
+    
     const uploadMessage = `New Image had been uploaded to ${categoryName} category!`;
     switch (categoryName) {
       case "Animals":
@@ -94,6 +94,9 @@ export const addNewImage = async (newImage: Omit<ImageInterface, 'id'>) => {
         break;
       case "Reptails":
         eventEmitter.emit("Reptails_upload", uploadMessage);
+        break;
+      case "Insects":
+        eventEmitter.emit("Insects_upload", uploadMessage);
         break;
       case "Plants":
         eventEmitter.emit("Plants_upload", uploadMessage);

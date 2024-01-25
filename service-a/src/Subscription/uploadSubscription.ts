@@ -8,7 +8,6 @@ export const uploadSubscription = (input: string[]) => {
     input.forEach((category) => {        
       eventEmitter.on(`${category}_upload`, emit.next);
     })
-
     return () => {
       eventEmitter.off("upload", emit.next)
     }

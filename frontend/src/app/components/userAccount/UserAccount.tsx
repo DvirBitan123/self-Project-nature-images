@@ -1,6 +1,5 @@
 import { trpc, trpc2 } from '../../trpcConnetion/ConnectTotRPC';
 import CategoriesSwitch from '../../utils/CategorySwitch';
-import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../router/routes';
 import { useEffect, useState } from 'react';
 import { BackspaceIcon } from '@heroicons/react/24/solid';
@@ -11,7 +10,6 @@ import UserNoToken from './UserNoToken';
 import LoadingLogo from '../../utils/LoadingLogo';
 
 export default function UserAccount() {
-  const navigate = useNavigate();
   const userToken = localStorage.getItem('user_token');
   const userEmail = useAtomValue(userEmailAtom);
 
