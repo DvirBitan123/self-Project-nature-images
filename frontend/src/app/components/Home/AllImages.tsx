@@ -7,6 +7,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import SingleImageModal from '../ImageModal/SingleImageModal';
 import { ImageInterface } from '../../types/ImagesTypes';
 import { ToastContainer } from 'react-toastify';
+import LoadingLogo from '../../utils/LoadingLogo';
 
 export default function AllImages(): ReactNode {
   const imgCategory = useAtomValue(categoryAtom);
@@ -16,19 +17,19 @@ export default function AllImages(): ReactNode {
   const setUserEmail = useSetAtom(userEmailAtom);
 
   const userToken = localStorage.getItem('user_token');
-  
+
   const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
   const [usersImgIds, setUsersImgIds] = useState<string[] | undefined>([]);
-  
+
   useEffect(() => {
     const fetchUserImages = async () => {
       try {
         if (userToken) {
-          const data = await trpc2.getUserImagesIds.query(userToken!);          
+          const data = await trpc2.getUserImagesIds.query(userToken!);
           setUsersImgIds(data);
         }
-      } 
-      catch(error) {
+      }
+      catch (error) {
         setTokenTimeout(true);
         localStorage.setItem('user_email', '');
         setUserEmail('');
@@ -85,10 +86,10 @@ export default function AllImages(): ReactNode {
           openModal={openModal}
           setOpenModal={setOpenModal}
         />
-        <ToastContainer 
-          hideProgressBar 
-          position="bottom-left" 
-          theme='colored' 
+        <ToastContainer
+          hideProgressBar
+          position="bottom-left"
+          theme='colored'
         />
       </>
     )

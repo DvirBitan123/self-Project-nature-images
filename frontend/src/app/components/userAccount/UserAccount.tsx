@@ -7,6 +7,8 @@ import { BackspaceIcon } from '@heroicons/react/24/solid';
 import { UserFuncsOutput } from '../../types/ImagesTypes';
 import { useAtomValue } from 'jotai';
 import { userEmailAtom } from '../../Jotai atoms/Jotai_atoms';
+import UserNoToken from './UserNoToken';
+import LoadingLogo from '../../utils/LoadingLogo';
 
 export default function UserAccount() {
   const navigate = useNavigate();
@@ -28,13 +30,6 @@ export default function UserAccount() {
   useEffect(() => {
     if (userImages) setImagesState(userImages);
   }, [userImages]);
-
-  useEffect(() => {
-    if (userCatError || userImagesError) {      
-      localStorage.clear();
-      navigate(ROUTES.LOGIN);
-    }
-  }, [userCatError, userImagesError]);
 
   const deleteImageFunc = async (userToken: string, imageId: string) => {
     const imageInput = {
@@ -90,9 +85,14 @@ export default function UserAccount() {
           </div>
 
           <div className='mx-20'>
-            <p className='text-2xl font-medium text-stone-700'>
-              Categories:
-            </p>
+            <div className='grid place-items-center'>
+              <p className='text-lg font-medium max-w-96 grid place-items-center'>
+                Get notifications about new uploaded Images!
+              </p>
+              <p className='my-6 text-2xl font-semibold text-stone-700'>
+                Your Categories:
+              </p>
+            </div>
             <div>
               {allCategories.map((item) => {
                 let checked = false;
@@ -115,5 +115,16 @@ export default function UserAccount() {
         </div>
       </div>
     )
+  }
+
+  else if (userCatError && userImagesError) {
+    const message = "It's been a while since you logged in, please login again";
+    return (
+      <UserNoToken message={message} />
+    )
+  }
+  
+  else {
+    return ( <LoadingLogo/> )
   }
 }

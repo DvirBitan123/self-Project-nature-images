@@ -55,7 +55,7 @@ export default function Login() {
             src="http://localhost:8181/public/Logo.png"
             alt="Nature Lens Icon"
           />
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign In to your account
           </h2>
         </div>
