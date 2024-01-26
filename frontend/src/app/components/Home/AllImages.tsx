@@ -18,7 +18,7 @@ export default function AllImages(): ReactNode {
 
   const userToken = localStorage.getItem('user_token');
 
-  const { data: allImages } = trpc.getImagesByCategory.useQuery(imgCategory);
+  const { data: allImages, isLoading } = trpc.getImagesByCategory.useQuery(imgCategory);
   const [usersImgIds, setUsersImgIds] = useState<string[] | undefined>([]);
 
   useEffect(() => {
@@ -37,8 +37,16 @@ export default function AllImages(): ReactNode {
     };
     fetchUserImages();
   }, []);
-
-  if (allImages) {
+  
+  if (isLoading) {
+    console.log(isLoading);
+    
+    return (
+      <LoadingLogo />
+    )
+  }
+  
+  else if (allImages) {
     const imagesArr = allImages.map((image) => {
       let checked = false;
       if (usersImgIds?.includes(image.id)) {
@@ -46,6 +54,7 @@ export default function AllImages(): ReactNode {
       }
       return { ...image, checked }
     });
+
 
     return (
       <>

@@ -14,8 +14,8 @@ export default function UserAccount() {
   const userEmail = useAtomValue(userEmailAtom);
 
   const { data: allCategories } = trpc.getAllCategories.useQuery();
-  const { data: userCategories, error: userCatError } = trpc.getUserCategories.useQuery(userToken!);
-  const { data: userImages, error: userImagesError } = trpc.getUserImages.useQuery(userToken!);
+  const { data: userCategories, error: userCatError, isLoading: userCatLoading } = trpc.getUserCategories.useQuery(userToken!);
+  const { data: userImages, error: userImagesError, isLoading: userImgLoading } = trpc.getUserImages.useQuery(userToken!);
   const [imagesState, setImagesState] = useState<UserFuncsOutput[]>([]);
   const [uploadMessage, setUploadMessage] = useState<string>('');
 
@@ -37,7 +37,11 @@ export default function UserAccount() {
     await trpc2.deleteUserImage.mutate(imageInput);
     const updatedImages = imagesState.filter((image) => image.image_id !== imageId);
     setImagesState(updatedImages);
-  }
+  };
+
+  if (userCatLoading || userImgLoading) {
+    return (<LoadingLogo />)
+  };
 
   if (userCategories && userImages && allCategories) {
     return (
@@ -51,9 +55,14 @@ export default function UserAccount() {
             </div>
           </a>
         </div>
-        <h1 className='grid place-content-center text-4xl font-medium pt-2 pb-8'>Welcome {userEmail}</h1>
+        <div className='grid place-content-center w-full'>
+          <p className='grid place-content-center text-4xl font-medium mb-8 pt-2 max-w-full'>Welcome {userEmail}</p>
+        </div>
+        <div className='w-full flex justify-center'>
+          <div className='w-11/12 h-1 mr-10 rounded-xl bg-gradient-to-r from-purple-500 via-cyan-500 to-emerald-500'></div>
+        </div>
         <div className='flex justify-between mx-5'>
-          <div>
+          <div className='pt-9'>
             <p className='grid place-content-center text-2xl font-medium text-stone-700'>
               Images you liked:
             </p>
@@ -81,8 +90,7 @@ export default function UserAccount() {
               })}
             </div>
           </div>
-
-          <div className='mx-20'>
+          <div className='mx-20 mb-5 pt-9'>
             <div className='grid place-items-center'>
               <p className='text-lg font-medium max-w-96 grid place-items-center'>
                 Get notifications about new uploaded Images!
@@ -120,9 +128,5 @@ export default function UserAccount() {
     return (
       <UserNoToken message={message} />
     )
-  }
-  
-  else {
-    return ( <LoadingLogo/> )
   }
 }

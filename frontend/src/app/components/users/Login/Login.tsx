@@ -48,14 +48,14 @@ export default function Login() {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-4 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-auto w-48"
+            className="mx-auto h-auto w-44"
             src="http://localhost:8181/public/Logo.png"
             alt="Nature Lens Icon"
           />
-          <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign In to your account
           </h2>
         </div>

@@ -15,7 +15,7 @@ const navigation = [
 export default function NavBar() {
   const userEmail = useAtomValue(userEmailAtom);    
   return (
-    <Disclosure as="nav" className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+    <Disclosure as="nav" className=" py-1 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -33,7 +33,7 @@ export default function NavBar() {
               </div>
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className=" max-w-16"
+                    className="max-w-20 hover:animate-pulse"
                     src="http://localhost:8181/public/Logo.png"
                     alt="site logo"
                   />
