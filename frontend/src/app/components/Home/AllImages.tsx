@@ -38,9 +38,7 @@ export default function AllImages(): ReactNode {
     fetchUserImages();
   }, []);
   
-  if (isLoading) {
-    console.log(isLoading);
-    
+  if (isLoading) {    
     return (
       <LoadingLogo />
     )
